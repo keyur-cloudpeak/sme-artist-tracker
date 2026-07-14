@@ -26,12 +26,10 @@ except ImportError:
     pass
 
 try:
-    with open("data/roster.json", "r") as f:
-        roster_json = f.read()
-    with open("data/snapshot.json", "r") as f:
-        snapshot_json = f.read()
-    with open("data/news.json", "r") as f:
-        news_json = f.read()
+    from utils.db import fetch_roster_data, fetch_snapshot_data, fetch_news_data
+    roster_json = fetch_roster_data()
+    snapshot_json = fetch_snapshot_data()
+    news_json = fetch_news_data()
 
     # Get API key from Streamlit secrets or environment variable
     try:

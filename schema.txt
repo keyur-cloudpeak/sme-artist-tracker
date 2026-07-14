@@ -1,0 +1,81 @@
+Table: artists
+  slug: TEXT
+  name: TEXT
+  country: VARCHAR(5)
+  genre_tags: ARRAY
+  label_division: TEXT
+  label_status: VARCHAR(11)
+  entity_type: VARCHAR(6)
+  status: VARCHAR(13)
+  priority: VARCHAR(8)
+  profile_url: TEXT
+  bio_excerpt: TEXT
+  current_tier: VARCHAR(8)
+  current_image_url: TEXT
+  created_at: TIMESTAMP
+  updated_at: TIMESTAMP
+Table: kpi_catalog
+  kpi_id: SMALLINT
+  name: TEXT
+  unit: TEXT
+  higher_is_better: BOOLEAN
+Table: snapshots
+  snapshot_date: DATE
+  previous_snapshot_date: DATE
+  source: TEXT
+  artist_count: INTEGER
+  created_at: TIMESTAMP
+Table: artist_images
+  id: BIGINT
+  artist_slug: TEXT
+  image_url: TEXT
+  local_path: TEXT
+  fetched_at: TIMESTAMP
+  is_current: BOOLEAN
+Table: artist_kpi_values
+  snapshot_date: DATE
+  artist_slug: TEXT
+  kpi_id: SMALLINT
+  current_value: NUMERIC
+  previous_value: NUMERIC
+  delta_absolute: NUMERIC
+  delta_percent: NUMERIC
+  trend: VARCHAR(7)
+  alert: TEXT
+  benchmark_tier: TEXT
+  extra: JSONB
+Table: artist_raw_harvest
+  snapshot_date: DATE
+  artist_slug: TEXT
+  platforms: JSONB
+  press_mentions: JSONB
+  harvest_error: TEXT
+  fetched_at: TIMESTAMP
+Table: artist_social_links
+  artist_slug: TEXT
+  platform: VARCHAR(11)
+  url: TEXT
+  is_active: BOOLEAN
+  updated_at: TIMESTAMP
+Table: news_signals
+  id: BIGINT
+  news_date: DATE
+  source_snapshot: DATE
+  artist_slug: TEXT
+  signal_type: TEXT
+  headline: TEXT
+  summary: TEXT
+  score: NUMERIC
+  priority: SMALLINT
+  source: TEXT
+  data_confidence: TEXT
+  image_url: TEXT
+  occurred_at: TIMESTAMP
+Table: news_signal_kpi_impacts
+  news_signal_id: BIGINT
+  kpi_id: SMALLINT
+  current_value: NUMERIC
+  benchmark_tier: TEXT
+  delta_absolute: NUMERIC
+  delta_percent: NUMERIC
+  direction: TEXT

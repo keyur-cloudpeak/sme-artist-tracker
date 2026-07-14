@@ -1,0 +1,120 @@
+def get_stories() -> str:
+    return r"""/* ══════════════════════════════════════════════════════════════════════
+   News feed / story item card
+   (converted from src/components/news-item.tsx)
+   ══════════════════════════════════════════════════════════════════════ */
+
+const SIGNAL_LABEL = {
+  rapid_follower_surge: 'RAPID SURGE', platform_silence_breaking: 'SILENCE → ACTIVE',
+  new_release: 'NEW RELEASE', declining_metrics: 'DECLINING', platform_silence: 'GOING DARK',
+  viral_spike: 'VIRAL', milestone: 'MILESTONE', chart_movement: 'CHART MOVE',
+  award: 'AWARD', collaboration: 'COLLAB', pr_event: 'PR EVENT', tour_announcement: 'TOUR',
+};
+
+const SIGNAL_STYLE = {
+  milestone:                 { bg: '#fbbf2422', text: '#fbbf24', border: '#fbbf2466' },
+  new_release:                { bg: '#4ade8022', text: '#4ade80', border: '#4ade8066' },
+  chart_movement:             { bg: '#4ade8022', text: '#4ade80', border: '#4ade8066' },
+  rapid_follower_surge:       { bg: '#60a5fa22', text: '#60a5fa', border: '#60a5fa66' },
+  platform_silence_breaking:  { bg: '#60a5fa22', text: '#60a5fa', border: '#60a5fa66' },
+  viral_spike:                { bg: '#f472b622', text: '#f472b6', border: '#f472b666' },
+  collaboration:               { bg: '#a78bfa22', text: '#a78bfa', border: '#a78bfa66' },
+  award:                       { bg: '#fbbf2422', text: '#fbbf24', border: '#fbbf2466' },
+  pr_event:                    { bg: '#22d3ee22', text: '#22d3ee', border: '#22d3ee66' },
+  tour_announcement:           { bg: '#fb923c22', text: '#fb923c', border: '#fb923c66' },
+  declining_metrics:           { bg: '#f8717122', text: '#f87171', border: '#f8717166' },
+  platform_silence:            { bg: '#f8717122', text: '#f87171', border: '#f8717166' },
+};
+
+function trendArrowHtml(dir, upClr, downClr, flatClr) {
+  if (dir === 'up')   return `<span style="color:${upClr}">▲</span>`;
+  if (dir === 'down') return `<span style="color:${downClr}">▼</span>`;
+  return `<span style="color:${flatClr}">—</span>`;
+}
+
+function kpiImpactBadgeHtml(impact) {
+  const dir = impact.direction ?? 'flat';
+  const absVal = impact.delta_absolute ?? null;
+  const pctVal = impact.delta_percent ?? null;
+  const hasDelta = absVal != null || pctVal != null;
+
+  const dirColor = dir === 'up' ? 'var(--color-accent-up)' : dir === 'down' ? 'var(--color-accent-down)' : 'var(--color-text-muted)';
+
+  let deltaHtml = '';
+  if (hasDelta) {
+    deltaHtml = `<span style="color:${dirColor}">${trendArrowHtml(dir, 'var(--color-accent-up)', 'var(--color-accent-down)', 'var(--color-text-muted)')}`;
+    if (absVal != null) deltaHtml += ` <span>${absVal > 0 ? '+' : ''}${fmtNumber(absVal)}</span>`;
+    if (pctVal != null && Math.abs(pctVal) < 500) deltaHtml += ` <span style="opacity:.6">(${pctVal > 0 ? '+' : ''}${pctVal.toFixed(1)}%)</span>`;
+    deltaHtml += `</span>`;
+  } else if (impact.current_value != null) {
+    deltaHtml = `<span style="color:var(--color-text-secondary)">${fmtNumber(impact.current_value)}`;
+    if (impact.benchmark_tier) deltaHtml += ` <span style="opacity:.6">· ${escapeHtml(impact.benchmark_tier)}</span>`;
+    deltaHtml += `</span>`;
+  }
+
+  return `<span class="kpi-impact"><span style="color:var(--color-text-muted)">${escapeHtml(impact.kpi_name)}</span>${deltaHtml}</span>`;
+}
+
+function confidenceDotsHtml(dots) {
+  const filled = (dots.match(/●/g) ?? []).length;
+  const unfilled = (dots.match(/○/g) ?? []).length;
+  return `<span class="conf-dots" title="Data confidence: ${filled}/${filled + unfilled}"><span class="conf-filled">${'●'.repeat(filled)}</span><span class="conf-empty">${'○'.repeat(unfilled)}</span></span>`;
+}
+
+function renderNewsItem(item, imageUrl) {
+  const signalLabel = SIGNAL_LABEL[item.signal_type] ?? item.signal_type.replace(/_/g, ' ').toUpperCase();
+  const isTop3 = item.priority <= 3;
+  const primaryImpact = item.kpi_impact[0] ?? null;
+  const fallbackSrc = `https://placehold.co/144x144/1A1A1A/444444?text=${encodeURIComponent(item.artist_slug)}`;
+  const style = SIGNAL_STYLE[item.signal_type] ?? { bg: '#ffffff18', text: '#ffffff', border: '#ffffff44' };
+
+  const kpiRow = primaryImpact
+    ? `<div class="kpi-impact-row">${item.kpi_impact.slice(0, 3).map(kpiImpactBadgeHtml).join('')}</div>`
+    : '';
+
+  const el = document.createElement('article');
+  el.className = 'story-card' + (isTop3 ? ' top3' : '');
+  el.innerHTML = `
+    <div class="story-priority${isTop3 ? ' top3' : ''}"><span>${item.priority}</span></div>
+    <img class="story-thumb" src="${escapeHtml(imageUrl ?? fallbackSrc)}" alt="${escapeHtml(item.artist_name)}" width="144" height="144" onerror="this.onerror=null;this.src='${fallbackSrc}'">
+    <div class="story-body">
+      <div class="story-top-row">
+        <span class="signal-badge" style="background:${style.bg};color:${style.text};border:1px solid ${style.border}">${escapeHtml(signalLabel)}</span>
+        <span class="story-artist-line">${escapeHtml(item.artist_name)}<span style="opacity:.4;margin:0 6px">·</span>${escapeHtml(item.artist_tier.toUpperCase())}</span>
+      </div>
+      <h3 class="story-headline${isTop3 ? ' top3' : ''}">${escapeHtml(item.headline)}</h3>
+      ${kpiRow}
+      <p class="story-summary">${escapeHtml(item.summary)}</p>
+      <div class="story-footer">
+        <span class="story-footer-item">${fmtTimestamp(item.timestamp)}</span>
+        <span class="story-footer-sep">·</span>
+        <span class="story-footer-item source" title="${escapeHtml(item.source)}">${escapeHtml(item.source.split(';')[0].trim())}</span>
+        <span class="story-footer-sep">·</span>
+        ${confidenceDotsHtml(item.data_confidence)}
+      </div>
+    </div>
+  `;
+  return el;
+}
+
+function renderNewsFeed(briefing, imageBySlug) {
+  const el = document.createElement('section');
+  const label = document.createElement('div');
+  label.className = 'anim-fade-up';
+  label.style.animationDelay = '50ms';
+  label.innerHTML = `<div class="section-label-row"><h2 class="section-label">TOP STORIES</h2><span class="section-meta">${briefing.items.length} items · ${escapeHtml(briefing.news_date)}</span></div>`;
+  el.appendChild(label);
+
+  const list = document.createElement('div');
+  list.className = 'story-list';
+  briefing.items.forEach((item, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'anim-fade-up';
+    wrap.style.animationDelay = `${100 + Math.min(i * 35, 900)}ms`;
+    wrap.appendChild(renderNewsItem(item, imageBySlug[item.artist_slug]));
+    list.appendChild(wrap);
+  });
+  el.appendChild(list);
+  return el;
+}
+"""

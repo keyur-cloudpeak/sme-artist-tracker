@@ -57,8 +57,8 @@ function smlLogoSvg(className) {
   return `<svg class="${className || ''}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${markW + GAP + 130} ${markH}" height="${markH}" aria-label="Sony Music Latin" role="img">
     <g>${circles}</g>
     <g transform="translate(${markW + GAP}, 0)">
-      <text x="0" y="${TEXT_Y - 3}" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-size="${FONT_SIZE}" font-weight="700" letter-spacing="0.08em" fill="#FFFFFF">SONY MUSIC</text>
-      <line x1="0" y1="${TEXT_Y + 1}" x2="120" y2="${TEXT_Y + 1}" stroke="#FFFFFF" stroke-width="0.6" opacity="0.35"/>
+      <text x="0" y="${TEXT_Y - 3}" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-size="${FONT_SIZE}" font-weight="700" letter-spacing="0.08em" fill="var(--color-text-primary)">SONY MUSIC</text>
+      <line x1="0" y1="${TEXT_Y + 1}" x2="120" y2="${TEXT_Y + 1}" stroke="var(--color-text-primary)" stroke-width="0.6" opacity="0.35"/>
       <text x="0" y="${TEXT_Y + 5}" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-size="${FONT_SMALL}" font-weight="500" letter-spacing="0.22em" fill="#999999" dominant-baseline="hanging">LATIN</text>
     </g>
   </svg>`;

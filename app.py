@@ -138,13 +138,28 @@ try:
                 width: 100%;
                 height: 100vh;
                 border: none;
+                display: block;
             }
-            /* Remove Streamlit's default padding to make the app fullscreen */
-            .block-container {
+             /* Remove Streamlit's default padding to make the app fullscreen */
+            .block-container, [data-testid="stBlockContainer"] {
                 padding: 0 !important;
+                margin: 0 !important;
                 max-width: 100% !important;
+                height: 100vh !important;
             }
             header[data-testid="stHeader"] {
+                display: none;
+            }
+            /* Hide Streamlit's parent scrollbars and prevent scrolling */
+            html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"], section.main, .main {
+                overflow: hidden !important;
+                height: 100vh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            html::-webkit-scrollbar, body::-webkit-scrollbar, [data-testid="stAppViewContainer"]::-webkit-scrollbar, [data-testid="stMain"]::-webkit-scrollbar, section.main::-webkit-scrollbar {
                 display: none;
             }
         </style>

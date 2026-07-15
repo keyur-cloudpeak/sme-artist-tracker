@@ -53,8 +53,15 @@ def get_style_css() -> str:
 
 /* ── Base ───────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-html, body { height: 100%; margin: 0; }
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--color-bg-primary);
+  transition: background-color .4s ease;
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar { display: none; }
+html, body { min-height: 100%; margin: 0; }
 
 body {
   background-color: var(--color-bg-primary);
@@ -100,10 +107,10 @@ img { max-width: 100%; display: block; }
 .theme-toggle-icon { width: 13px; height: 13px; color: var(--color-bg-primary); }
 
 /* ── Masthead ───────────────────────────────────────────── */
-.masthead { padding: 2.5rem 1.5rem 0; }
-.masthead-logo-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-.masthead-rule { border-top: 2px solid var(--color-text-primary); margin-bottom: 1rem; }
-.masthead-eyebrow-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: .75rem; }
+.masthead { padding: 1.25rem 1.5rem 0; }
+.masthead-logo-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; }
+.masthead-rule { border-top: 2px solid var(--color-text-primary); margin-bottom: 0.75rem; }
+.masthead-eyebrow-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
 .eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .35em; text-transform: uppercase; color: var(--color-text-muted); }
 .eyebrow-tight { letter-spacing: .2em; }
 .masthead h1 {

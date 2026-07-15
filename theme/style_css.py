@@ -125,7 +125,7 @@ img { max-width: 100%; display: block; }
 .ticker-live-label { font-family: var(--font-mono); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: #f87171; }
 .ticker-sep { color: var(--color-border-light); opacity: .4; }
 .ticker-viewport { overflow: hidden; flex: 1; }
-.ticker-track { display: flex; gap: 0; white-space: nowrap; align-items: center; animation: ticker 80s linear infinite; width: max-content; }
+.ticker-track { display: flex; gap: 0; white-space: nowrap; align-items: center; animation: ticker 160s linear infinite; width: max-content; }
 .ticker-item { display: inline-flex; align-items: center; gap: .875rem; padding: 0 1.5rem; }
 .ticker-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid; }
 .ticker-badge { font-family: var(--font-mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; padding: 4px 8px; border-radius: 2px; flex-shrink: 0; }

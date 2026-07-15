@@ -180,7 +180,6 @@ function renderOverview(roster, snapshot, briefing) {
   const stats = [
     ['Artists tracked', roster.artist_count.toString()],
     ['KPIs per artist',  '11'],
-    ['Active alerts',    alertCount.toString()],
     ['Stories today',    briefing.items.length.toString()],
     ['Data as of',       snapshot.snapshot_date],
   ].map(([label, val]) => `

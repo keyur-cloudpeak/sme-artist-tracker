@@ -114,6 +114,10 @@ def fetch_snapshot_data():
                     "benchmark_tier": kpi['benchmark_tier'],
                     "components": extra
                 }
+                # Unpack extra properties (like Apple Music info) to the top level
+                if isinstance(extra, dict):
+                    kpi_data.update(extra)
+                    
                 artists_dict[slug]['kpis'].append(kpi_data)
             
         snapshot_data = {

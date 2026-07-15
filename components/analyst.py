@@ -225,7 +225,7 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, apiKeyGetter, o
         answer = accumulated;
         updateAnswerOnly();
       },
-      () => { if (myToken === streamToken) { loading = false; updateAnswerOnly(); } },
+      () => { if (myToken === streamToken) { loading = false; render(); } },
       msg => { if (myToken === streamToken) { error = msg; loading = false; render(); } },
     );
   }

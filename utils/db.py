@@ -37,6 +37,10 @@ def get_base64_image(slug):
 def fetch_roster_data():
     engine = get_engine()
     with engine.connect() as conn:
+        # Fetch latest snapshot date for dynamic date
+        snapshot_res = conn.execute(text("SELECT snapshot_date FROM snapshots ORDER BY snapshot_date DESC LIMIT 1")).fetchone()
+        current_date = snapshot_res[0].isoformat() if snapshot_res else date.today().isoformat()
+
         # Fetch artists
         artists_res = conn.execute(text("SELECT * FROM artists"))
         artists = [dict(row._mapping) for row in artists_res]
@@ -56,7 +60,7 @@ def fetch_roster_data():
             artist['image_local_path'] = f"data/images/{artist['slug']}.jpg"
             
         roster_data = {
-            "roster_date": "2026-07-14", # You can make this dynamic
+            "roster_date": current_date,
             "source": "PostgreSQL Database",
             "artist_count": len(artists),
             "artists": artists
@@ -122,6 +126,9 @@ def fetch_snapshot_data():
 def fetch_news_data():
     engine = get_engine()
     with engine.connect() as conn:
+        snapshot_res = conn.execute(text("SELECT snapshot_date FROM snapshots ORDER BY snapshot_date DESC LIMIT 1")).fetchone()
+        current_date = snapshot_res[0].isoformat() if snapshot_res else date.today().isoformat()
+        
         news_res = conn.execute(text("SELECT * FROM news_signals ORDER BY news_date DESC LIMIT 10"))
         news_list = [dict(row._mapping) for row in news_res]
         
@@ -188,8 +195,8 @@ def fetch_news_data():
             items.append(formatted_news)
             
         news_data = {
-            "news_date": "2026-07-14", # Make dynamic
-            "source_snapshot": "2026-07-14",
+            "news_date": current_date,
+            "source_snapshot": current_date,
             "total_signals_detected": len(items),
             "items": items
         }

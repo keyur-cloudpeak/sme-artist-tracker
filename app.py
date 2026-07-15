@@ -135,10 +135,14 @@ try:
     st.markdown('''
         <style>
             iframe {
-                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
                 height: 100vh;
                 border: none;
                 display: block;
+                z-index: 99999;
             }
              /* Remove Streamlit's default padding to make the app fullscreen */
             .block-container, [data-testid="stBlockContainer"] {

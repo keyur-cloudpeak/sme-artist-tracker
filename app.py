@@ -27,9 +27,50 @@ except ImportError:
 
 try:
     from utils.db import fetch_roster_data, fetch_snapshot_data, fetch_news_data
+    
+    loader_placeholder = st.empty()
+    loader_placeholder.markdown("""
+        <style>
+        .custom-loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0f1115; /* Dark background matching theme */
+            z-index: 999999;
+        }
+        .zoom-logo {
+            animation: pulse-zoom 1.5s ease-in-out infinite;
+            width: 240px;
+            height: auto;
+        }
+        @keyframes pulse-zoom {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        </style>
+        <div class="custom-loader-container">
+            <svg class="zoom-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 181.6 35.4" height="60" aria-label="Sony Music Latin" role="img">
+                <g><circle cx="8.4" cy="2.2" r="2.2" fill="#CC0000"/><circle cx="14.6" cy="2.2" r="2.2" fill="#CC0000"/><circle cx="20.8" cy="2.2" r="2.2" fill="#CC0000"/><circle cx="27.0" cy="2.2" r="2.2" fill="#CC0000"/><circle cx="33.2" cy="2.2" r="2.2" fill="#CC0000"/><circle cx="2.2" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="8.4" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="14.6" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="20.8" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="27.0" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="33.2" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="39.4" cy="8.4" r="2.2" fill="#CC0000"/><circle cx="2.2" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="8.4" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="14.6" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="20.8" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="27.0" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="33.2" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="39.4" cy="14.6" r="2.2" fill="#CC0000"/><circle cx="2.2" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="8.4" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="14.6" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="20.8" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="27.0" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="33.2" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="39.4" cy="20.8" r="2.2" fill="#CC0000"/><circle cx="2.2" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="8.4" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="14.6" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="20.8" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="27.0" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="33.2" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="39.4" cy="27.0" r="2.2" fill="#CC0000"/><circle cx="8.4" cy="33.2" r="2.2" fill="#CC0000"/><circle cx="14.6" cy="33.2" r="2.2" fill="#CC0000"/><circle cx="20.8" cy="33.2" r="2.2" fill="#CC0000"/><circle cx="27.0" cy="33.2" r="2.2" fill="#CC0000"/><circle cx="33.2" cy="33.2" r="2.2" fill="#CC0000"/></g>
+                <g transform="translate(51.6, 0)">
+                    <text x="0" y="14.7" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="0.08em" fill="#FFFFFF">SONY MUSIC</text>
+                    <line x1="0" y1="18.7" x2="120" y2="18.7" stroke="#FFFFFF" stroke-width="0.6" opacity="0.35"/>
+                    <text x="0" y="22.7" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="500" letter-spacing="0.22em" fill="#999999" dominant-baseline="hanging">LATIN</text>
+                </g>
+            </svg>
+        </div>
+    """, unsafe_allow_html=True)
+
     roster_json = fetch_roster_data()
     snapshot_json = fetch_snapshot_data()
     news_json = fetch_news_data()
+    
+    loader_placeholder.empty()
 
     # Get API key from Streamlit secrets or environment variable
     try:

@@ -1,5 +1,14 @@
+import base64
+
 def get_theme() -> str:
-    return r"""/* ══════════════════════════════════════════════════════════════════════
+    try:
+        with open("data/images/Sony-Music-cursor.png", "rb") as f:
+            b64 = base64.b64encode(f.read()).decode("utf-8")
+            img_url = f"data:image/png;base64,{b64}"
+    except Exception:
+        img_url = ""
+
+    css_js = r"""/* ══════════════════════════════════════════════════════════════════════
    Theme toggle — dark / light mode
    (converted from src/components/theme-toggle.tsx)
    ══════════════════════════════════════════════════════════════════════ */
@@ -38,24 +47,12 @@ function renderThemeToggle(theme, onToggle) {
 
 /* SML logo SVG (converted from src/components/sml-logo.tsx) */
 function smlLogoSvg(className) {
-  const DOT_R = 2.2, SPACING = 6.2, COLS = 7, ROWS = 6;
-  const OMIT = new Set(['0,0', '6,0', '0,5', '6,5']);
-  const dots = [];
-  for (let r = 0; r < ROWS; r++) {
-    for (let c = 0; c < COLS; c++) {
-      if (!OMIT.has(`${c},${r}`)) {
-        dots.push({ cx: c * SPACING + DOT_R, cy: r * SPACING + DOT_R });
-      }
-    }
-  }
-  const markW = (COLS - 1) * SPACING + DOT_R * 2;
-  const markH = (ROWS - 1) * SPACING + DOT_R * 2;
+  const markW = 36;
+  const markH = 36;
   const GAP = 10, TEXT_Y = markH / 2, FONT_SIZE = 12, FONT_SMALL = 10;
 
-  const circles = dots.map(d => `<circle cx="${d.cx}" cy="${d.cy}" r="${DOT_R}" fill="#CC0000"/>`).join('');
-
   return `<svg class="${className || ''}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${markW + GAP + 130} ${markH}" height="${markH}" aria-label="Sony Music Latin" role="img">
-    <g>${circles}</g>
+    <image href="IMG_URL_PLACEHOLDER" x="0" y="0" width="${markW}" height="${markH}" />
     <g transform="translate(${markW + GAP}, 0)">
       <text x="0" y="${TEXT_Y - 3}" font-family="'DM Sans','Helvetica Neue',Arial,sans-serif" font-size="${FONT_SIZE}" font-weight="700" letter-spacing="0.08em" fill="var(--color-text-primary)">SONY MUSIC</text>
       <line x1="0" y1="${TEXT_Y + 1}" x2="120" y2="${TEXT_Y + 1}" stroke="var(--color-text-primary)" stroke-width="0.6" opacity="0.35"/>
@@ -64,3 +61,4 @@ function smlLogoSvg(className) {
   </svg>`;
 }
 """
+    return css_js.replace("IMG_URL_PLACEHOLDER", img_url)

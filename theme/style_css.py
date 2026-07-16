@@ -1,5 +1,14 @@
+import base64
+
 def get_style_css() -> str:
-    return r"""/* ══════════════════════════════════════════════════════════════════════
+    try:
+        with open("data/images/Sony-Music-cursor-32.png", "rb") as f:
+            b64 = base64.b64encode(f.read()).decode("utf-8")
+            cursor32_url = f"data:image/png;base64,{b64}"
+    except Exception:
+        cursor32_url = ""
+
+    css = r"""/* ══════════════════════════════════════════════════════════════════════
    Sony Music Latin Pulse — plain CSS (converted from Tailwind + React)
    ══════════════════════════════════════════════════════════════════════ */
 
@@ -70,6 +79,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color .4s ease, color .4s ease;
+  cursor: url('CURSOR32_URL_PLACEHOLDER') 16 16, auto;
 }
 
 body::before {
@@ -117,7 +127,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-headline); font-weight: 900; line-height: 1; letter-spacing: -0.02em;
   color: var(--color-text-primary); font-size: clamp(1.75rem, 4vw, 3.5rem); margin: 0;
 }
-.cursor-blink { margin-left: 2px; color: var(--color-text-muted); animation: blink 1.1s step-end infinite; }
+.cursor-blink { margin-left: 2px; color: transparent; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; display: inline-block; width: 14px; height: 14px; animation: blink 1.1s step-end infinite; }
 
 /* ── News ticker ────────────────────────────────────────── */
 .ticker-wrap { margin-top: 1.5rem; overflow: hidden; position: relative; }
@@ -126,9 +136,9 @@ img { max-width: 100%; display: block; }
 .ticker-glow-bottom { bottom: 0; background: linear-gradient(90deg, transparent, rgba(96,165,250,.5) 20%, rgba(74,222,128,.5) 50%, rgba(251,191,36,.5) 80%, transparent); }
 .ticker-inner { background: var(--color-bg-secondary); padding: 1.25rem 0; display: flex; align-items: center; }
 .ticker-live { flex-shrink: 0; display: flex; align-items: center; gap: .5rem; padding: 0 1rem 0 1.5rem; z-index: 10; background: var(--color-bg-secondary); }
-.ticker-dot { position: relative; width: 10px; height: 10px; }
-.ticker-dot-ping { position: absolute; inset: 0; border-radius: 50%; background: #f87171; opacity: .4; animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
-.ticker-dot-solid { position: relative; width: 10px; height: 10px; border-radius: 50%; background: #f87171; }
+.ticker-dot { position: relative; width: 16px; height: 16px; }
+.ticker-dot-ping { position: absolute; inset: 0; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; opacity: .4; animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
+.ticker-dot-solid { position: relative; width: 16px; height: 16px; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; }
 .ticker-live-label { font-family: var(--font-mono); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; font-weight: 700; color: #f87171; }
 .ticker-sep { color: var(--color-border-light); opacity: .4; }
 .ticker-viewport { overflow: hidden; flex: 1; }
@@ -351,9 +361,9 @@ img { max-width: 100%; display: block; }
 .chat-header:hover { background: var(--color-bg-card); }
 .chat-header-left { display: flex; align-items: center; gap: .75rem; }
 .chat-header-right { display: flex; align-items: center; gap: 1rem; }
-.chat-live-dot { position: relative; width: 8px; height: 8px; }
-.chat-live-dot-ping { position: absolute; inset: 0; border-radius: 50%; background: #fff; opacity: .3; animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
-.chat-live-dot-solid { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--color-text-primary); }
+.chat-live-dot { position: relative; width: 14px; height: 14px; }
+.chat-live-dot-ping { position: absolute; inset: 0; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; opacity: .3; animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
+.chat-live-dot-solid { position: relative; width: 14px; height: 14px; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; }
 .chat-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: .3em; color: var(--color-text-primary); text-transform: uppercase; }
 .chat-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted); }
 .chat-key-badge { font-family: var(--font-mono); font-size: 10px; color: var(--color-text-muted); border: 1px solid var(--color-border); padding: 2px 8px; border-radius: 2px; cursor: pointer; background: none; }
@@ -419,10 +429,10 @@ img { max-width: 100%; display: block; }
 .analyst-q-title { font-family: var(--font-headline); font-weight: 900; line-height: 1.2; color: var(--color-text-primary); font-size: clamp(1.6rem, 3.5vw, 2.8rem); margin: 0; }
 .analyst-answer-area { flex: 1; overflow-y: auto; padding-bottom: 2rem; max-height: calc(100vh - 440px); min-height: 300px; }
 .analyst-loading { display: flex; align-items: center; gap: 12px; }
-.analyst-loading-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-text-primary); animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
+.analyst-loading-dot { width: 16px; height: 16px; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; animation: ping 1.4s cubic-bezier(0,0,.2,1) infinite; }
 .analyst-loading-label { font-family: var(--font-mono); font-size: 15px; color: var(--color-text-muted); letter-spacing: .1em; }
 .analyst-error { font-size: 18px; color: #f87171; }
-.analyst-cursor { display: inline-block; width: 8px; height: 20px; margin-left: 4px; background: var(--color-text-muted); animation: pulse 1.4s ease-in-out infinite; vertical-align: middle; }
+.analyst-cursor { display: inline-block; width: 16px; height: 16px; margin-left: 4px; background-image: url('CURSOR32_URL_PLACEHOLDER'); background-size: contain; background-repeat: no-repeat; animation: pulse 1.4s ease-in-out infinite; vertical-align: middle; }
 .answer-p { font-size: 18px; line-height: 1.6; color: var(--color-text-secondary); margin: 0 0 12px; }
 .answer-p strong { color: var(--color-text-primary); font-weight: 700; }
 .answer-heading { font-family: var(--font-mono); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: #a78bfa; margin: 16px 0 4px; }
@@ -466,3 +476,4 @@ img { max-width: 100%; display: block; }
   .masthead, .tabnav, .tab-content { margin-left: 0; margin-right: 0; padding-left: 1rem; padding-right: 1rem; }
 }
 """
+    return css.replace("CURSOR32_URL_PLACEHOLDER", cursor32_url)

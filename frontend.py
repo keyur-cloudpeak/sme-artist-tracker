@@ -95,7 +95,7 @@ def get_frontend() -> str:
     tabNavSlot.appendChild(renderTabNav(state.activeTab, {
       stories: briefing.items.length,
       roster: roster.artist_count,
-      leaderboards: 11,
+      leaderboards: getKpiCount(),
     }, setActiveTab));
 
     bodySlot.innerHTML = '';

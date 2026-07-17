@@ -113,7 +113,7 @@ function renderArtistCard(artist, snapshot, initiallyExpanded) {
 
   function expandedHtml() {
     if (!expanded) return '';
-    const kpisHtml = snapshot.kpis.map(kpiRowHtml).join('');
+    const kpisHtml = snapshot.kpis.filter(k => k.kpi_id < 12).map(kpiRowHtml).join('');
     const am = appleMusicPanelHtml(snapshot.kpis.find(k => k.kpi_id === 11));
     return `
       <div class="ac-expanded">

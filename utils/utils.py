@@ -57,6 +57,220 @@ const TIER_LABEL = { mega: 'MEGA', major: 'MAJOR', rising: 'RISING', emerging: '
 const TIER_COLOR = { mega: CLR.mega, major: CLR.major, rising: CLR.rising, emerging: CLR.emerging };
 const TIER_DOT_COLOR = { mega: '#fff', major: '#999', rising: '#666', emerging: '#444' };
 
+const DOMAIN_REGISTRY = [
+  { id: 'audience', label: 'Audience', description: 'Fan growth, engagement, and audience distribution signals.', color: '#60a5fa' },
+  { id: 'streaming', label: 'Streaming', description: 'Streaming consumption and listener momentum.', color: '#4ade80' },
+  { id: 'content', label: 'Content', description: 'Publishing cadence, platform mix, and creator activity.', color: '#2dd4bf' },
+  { id: 'video', label: 'Video', description: 'Visual content performance and algorithmic reach.', color: '#f472b6' },
+  { id: 'catalog', label: 'Catalog', description: 'Release recency and catalog activity signals.', color: '#fbbf24' },
+  { id: 'media', label: 'Media', description: 'Press attention and cultural relevance.', color: '#fb923c' },
+  { id: 'financial', label: 'Financial', description: 'Revenue, margin, and internal business performance.', color: '#a78bfa' },
+  { id: 'contracts', label: 'Contracts', description: 'Deal terms, renewals, obligations, and risk signals.', color: '#34d399' },
+];
+
+const DOMAIN_BY_ID = Object.fromEntries(DOMAIN_REGISTRY.map(d => [d.id, d]));
+
+// ── KPI registry ───────────────────────────────────────────────────────
+
+const KPI_REGISTRY = [
+  {
+    id: 1,
+    name: 'Total Social Reach',
+    shortName: 'Reach',
+    domain: 'audience',
+    format: 'number',
+    color: CLR.reach,
+    invertSort: false,
+    narrative: 'Total Social Reach is the headline number for label negotiations and brand partnerships. It represents the combined addressable audience across every platform — the larger the reach, the greater the leverage when pricing sync deals, sponsorships, and touring guarantees.',
+    description: 'Sum of followers across all platforms — raw audience size and label leverage.',
+  },
+  {
+    id: 2,
+    name: 'Reach Velocity',
+    shortName: 'Velocity',
+    domain: 'audience',
+    format: 'percent',
+    color: CLR.reach,
+    invertSort: false,
+    narrative: 'Reach Velocity is an early-warning signal. A sustained uptick of 2 %+ daily often precedes a breakout moment — an ideal time to increase marketing spend and pitch editorial playlists before the wave crests. A sustained decline signals audience fatigue or platform disengagement that needs A&R attention.',
+    description: '% change in total reach vs. prior snapshot — early signal of a breakout or decline.',
+  },
+  {
+    id: 3,
+    name: 'Engagement Rate',
+    shortName: 'Eng. Rate',
+    domain: 'audience',
+    format: 'percent',
+    color: CLR.engRate,
+    invertSort: false,
+    narrative: 'Engagement Rate separates authentic fanbases from inflated follower counts. A highly engaged smaller audience will convert to ticket sales and merchandise at far higher rates than a passive mega-following. Use this metric to identify artists who are ready for premium brand integrations.',
+    description: 'Likes + comments on recent posts ÷ total followers — quality of audience connection.',
+  },
+  {
+    id: 4,
+    name: 'Spotify Monthly Listeners',
+    shortName: 'Spotify',
+    domain: 'streaming',
+    format: 'number',
+    color: CLR.spotify,
+    invertSort: false,
+    narrative: "Spotify Monthly Listeners is the industry's de facto streaming power metric — used by promoters, labels, and sync agents to gauge real-time commercial relevance. Above 20 M qualifies an artist for headliner status on major festival circuits.",
+    description: "Industry's standard streaming power metric, pulled directly from Spotify.",
+  },
+  {
+    id: 5,
+    name: 'Spotify Listener Trend',
+    shortName: 'Spotify Δ',
+    domain: 'streaming',
+    format: 'percent',
+    color: CLR.spotify,
+    invertSort: false,
+    narrative: 'Spotify Listener Trend measures release impact and streaming momentum. A 20 %+ spike typically indicates a successful new drop or playlist addition. Sustained positive trend over multiple weeks signals genuine catalogue growth — a key argument for increased A&R investment.',
+    description: '% change in monthly listeners — measures release impact and streaming momentum.',
+  },
+  {
+    id: 6,
+    name: 'Content Velocity',
+    shortName: 'Posts/wk',
+    domain: 'content',
+    format: 'posts',
+    color: '#22d3ee',
+    invertSort: false,
+    narrative: 'Content Velocity tracks how actively an artist is feeding the algorithm. Consistent posting (7–14 pieces per week) sustains platform reach without paid promotion. A sudden drop in velocity is often the earliest observable signal of an artist going inactive or entering a contract dispute.',
+    description: 'Posts published across all platforms in the last 7 days — artist activity level.',
+  },
+  {
+    id: 7,
+    name: 'Platform Diversity Score',
+    shortName: 'Diversity',
+    domain: 'content',
+    format: 'ratio',
+    color: '#2dd4bf',
+    invertSort: false,
+    narrative: 'Platform Diversity Score measures distribution risk. An artist reliant on a single platform is vulnerable to algorithm changes or account issues. A score above 0.7 indicates a healthy multi-platform presence that protects revenue streams and reaches different demographic segments.',
+    description: 'Active platforms ÷ total platforms — flags single-platform dependency risk.',
+  },
+  {
+    id: 8,
+    name: 'YouTube Weekly Velocity',
+    shortName: 'YT Views',
+    domain: 'video',
+    format: 'number',
+    color: '#f472b6',
+    invertSort: false,
+    narrative: "YouTube Weekly Velocity captures the visual content engine — the primary driver of new fan acquisition. Average views across the artist's 5 most recent uploads signal whether music video investments are paying off and whether the artist's content is being pushed by YouTube's algorithm. Sustained high values predict streaming uplift weeks before it shows on Spotify.",
+    description: 'Average views across the 5 most recent YouTube videos — visual content performance and algorithmic push.',
+  },
+  {
+    id: 9,
+    name: 'Latest Release Recency',
+    shortName: 'Release',
+    domain: 'catalog',
+    format: 'recency',
+    color: CLR.release,
+    invertSort: true,
+    narrative: 'Release Recency tracks how fresh the catalogue is in the streaming ecosystem. Artists beyond 120 days without a release see measurable audience retention decay. Cross-checked across Spotify and Apple Music — uses whichever platform indexed the latest drop first. Use this leaderboard in ascending order to identify artists urgently needing a content drop to re-enter the algorithm cycle.',
+    description: 'Days since last release on Spotify or Apple Music — flags artists going dark on new material.',
+  },
+  {
+    id: 10,
+    name: 'News & Press Mentions',
+    shortName: 'Press',
+    domain: 'media',
+    format: 'articles',
+    color: '#fb923c',
+    invertSort: false,
+    narrative: 'News & Press Mentions quantify cultural relevance beyond owned channels. High press velocity amplifies all other KPIs — streaming, social growth, and engagement all lift when an artist is in the news cycle. Monitor this metric to time campaign activations with organic media momentum.',
+    description: 'Unique articles mentioning the artist in the last 7 days — cultural relevance signal.',
+  },
+  {
+    id: 11,
+    name: 'Apple Music Catalog Activity',
+    shortName: 'AM Releases',
+    domain: 'catalog',
+    format: 'posts',
+    color: '#f87171',
+    invertSort: false,
+    narrative: "Apple Music Catalog Activity counts the releases — singles, EPs, albums — that landed on iTunes / Apple Music in the last 90 days. Apple's ecosystem skews older and more affluent than Spotify, so a strong cadence here signals reach into the demographics that drive premium pricing for sync, sponsorship, and tour. Pair with KPI 5 (Spotify Listener Trend) to detect platform-asymmetric breakouts.",
+    description: "Count of singles / EPs / albums on iTunes in the last 90 days — release cadence on Apple's platform.",
+  },
+];
+
+const KPI_BY_ID = Object.fromEntries(KPI_REGISTRY.map(k => [k.id, k]));
+
+function getKpiMeta(kpiId) {
+  return KPI_BY_ID[kpiId] ?? {
+    id: kpiId,
+    name: `KPI ${String(kpiId).padStart(2, '0')}`,
+    shortName: 'Value',
+    domain: 'custom',
+    format: 'text',
+    color: '#9ca3af',
+    invertSort: false,
+    narrative: '',
+    description: '',
+  };
+}
+
+function getKpiCount() {
+  return KPI_REGISTRY.length;
+}
+
+function getDomainMeta(domainId) {
+  return DOMAIN_BY_ID[domainId] ?? { id: domainId, label: String(domainId).toUpperCase(), description: '', color: '#9ca3af' };
+}
+
+function getKpiColor(kpiId) {
+  return getKpiMeta(kpiId).color ?? '#9ca3af';
+}
+
+function getDomainCounts() {
+  const counts = Object.fromEntries(DOMAIN_REGISTRY.map(d => [d.id, 0]));
+  KPI_REGISTRY.forEach(k => { counts[k.domain] = (counts[k.domain] ?? 0) + 1; });
+  return counts;
+}
+
+function formatKpiValue(kpi) {
+  if (!kpi) return '—';
+  const meta = getKpiMeta(kpi.kpi_id);
+  const v = kpi.current_value;
+  if (v === null || v === undefined) return '—';
+
+  switch (meta.format) {
+    case 'number':
+      return fmtNumber(v);
+    case 'percent':
+      return `${Number(v).toFixed(2)}%`;
+    case 'posts':
+      return `${v}`;
+    case 'ratio':
+      return `${(v * 100).toFixed(0)}%`;
+    case 'recency':
+      return fmtRecencyDays(v);
+    case 'articles':
+      return `${v}`;
+    default:
+      return v.toString();
+  }
+}
+
+function formatKpiPromptValue(kpi) {
+  if (!kpi) return '—';
+  const meta = getKpiMeta(kpi.kpi_id);
+  const value = formatKpiValue(kpi);
+  const parts = [value];
+  if (kpi.delta_percent !== null && kpi.delta_percent !== undefined && Math.abs(kpi.delta_percent) < 500) {
+    parts.push(`Δ ${fmtDelta(kpi.delta_percent)}`);
+  }
+  if (kpi.trend) {
+    parts.push(`trend ${kpi.trend}`);
+  }
+  if (kpi.benchmark_tier) {
+    parts.push(`[${kpi.benchmark_tier}]`);
+  }
+  return `${meta.name}: ${parts.join(' ')}`;
+}
+
 // ── Formatters ─────────────────────────────────────────────────────────
 
 function fmtNumber(n) {
@@ -207,22 +421,17 @@ const SUGGESTED_QUESTIONS = [
 
 function buildSystemPrompt(roster, snapshot, briefing) {
   const artistLines = snapshot.artists.map(a => {
-    const kpi = Object.fromEntries(a.kpis.map(k => [k.kpi_id, k]));
+    const kpiById = Object.fromEntries(a.kpis.map(k => [k.kpi_id, k]));
+    const summaryKpis = KPI_REGISTRY.map(meta => {
+      const kpi = kpiById[meta.id];
+      if (!kpi) return `  ${meta.name}: —`;
+      return `  ${formatKpiPromptValue(kpi)}`;
+    });
     const alerts = a.kpis.filter(k => k.alert).map(k => k.alert).join(', ');
-    const reach = kpi[1], velocity = kpi[2], eng = kpi[3], spotify = kpi[4],
-          spotifyTrend = kpi[5], content = kpi[6], diversity = kpi[7],
-          video = kpi[8], recency = kpi[9], press = kpi[10];
 
     return [
       `${a.artist_name} [${a.tier.toUpperCase()}]`,
-      `  Social Reach: ${fmtNumber(reach?.current_value)} (velocity ${velocity?.current_value?.toFixed(1) ?? '—'}% ${velocity?.trend ?? ''})`,
-      `  Engagement Rate: ${eng?.current_value?.toFixed(2) ?? '—'}% [${eng?.benchmark_tier ?? '—'}]`,
-      `  Spotify Listeners: ${fmtNumber(spotify?.current_value)} (trend ${spotifyTrend?.current_value?.toFixed(1) ?? '—'}%)`,
-      `  Content Velocity: ${content?.current_value ?? '—'} posts/week`,
-      `  Platform Diversity: ${diversity?.current_value != null ? (diversity.current_value * 100).toFixed(0) : '—'}%`,
-      `  Video View Momentum: ${fmtNumber(video?.current_value)}`,
-      `  Release Recency: ${recency?.current_value ?? '—'} days ago [${recency?.benchmark_tier ?? '—'}]`,
-      `  Press Mentions: ${press?.current_value ?? '—'} articles/week`,
+      ...summaryKpis,
       alerts ? `  ALERTS: ${alerts}` : `  Alerts: none`,
     ].join('\n');
   });
@@ -234,6 +443,8 @@ function buildSystemPrompt(roster, snapshot, briefing) {
   const megaArtists   = snapshot.artists.filter(a => a.tier === 'mega').map(a => a.artist_name);
   const majorArtists  = snapshot.artists.filter(a => a.tier === 'major').map(a => a.artist_name);
   const risingArtists = snapshot.artists.filter(a => a.tier === 'rising').map(a => a.artist_name);
+  const domainSummary = DOMAIN_REGISTRY.map(d => `${d.label}: ${getDomainCounts()[d.id] ?? 0} KPIs`).join(' · ');
+  const kpiNames = KPI_REGISTRY.map(k => `${k.id.toString().padStart(2, '0')}. ${k.name} [${getDomainMeta(k.domain).label}]`).join(', ');
 
   return `You are an embedded AI analyst inside the Sony Music Latin Artist Intelligence Dashboard.
 You have access to today's live KPI snapshot for all ${roster.artist_count} artists on the roster.
@@ -242,6 +453,8 @@ Snapshot date: ${snapshot.snapshot_date}
 Previous snapshot: ${snapshot.previous_snapshot_date}
 Total artists: ${roster.artist_count}
 Total active alerts: ${snapshot.artists.reduce((n, a) => n + a.kpis.filter(k => k.alert).length, 0)}
+KPI registry: ${KPI_REGISTRY.length} metrics (${kpiNames})
+Domain registry: ${DOMAIN_REGISTRY.length} business areas (${domainSummary})
 
 ARTIST TIERS:
   Mega (>50M total reach): ${megaArtists.join(', ')}

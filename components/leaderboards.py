@@ -4,38 +4,8 @@ def get_leaderboards() -> str:
    (converted from src/components/kpi-leaderboard.tsx)
    ══════════════════════════════════════════════════════════════════════ */
 
-const LB_KPI_COLOR = {
-  1: '#60a5fa', 2: '#60a5fa', 3: '#c084fc', 4: '#4ade80', 5: '#4ade80',
-  6: '#22d3ee', 7: '#2dd4bf', 8: '#f472b6', 9: '#fbbf24', 10: '#fb923c', 11: '#f87171',
-};
-
-const KPI_META = {
-  1:  { name: 'Total Social Reach',           shortName: 'Reach',       format: 'number',   invertSort: false },
-  2:  { name: 'Social Reach Velocity',        shortName: 'Velocity',    format: 'percent',  invertSort: false },
-  3:  { name: 'Engagement Rate',              shortName: 'Eng. Rate',   format: 'percent',  invertSort: false },
-  4:  { name: 'Spotify Monthly Listeners',    shortName: 'Spotify',     format: 'number',   invertSort: false },
-  5:  { name: 'Spotify Listener Trend',       shortName: 'Spotify Δ',   format: 'percent',  invertSort: false },
-  6:  { name: 'Content Velocity',             shortName: 'Posts/wk',    format: 'posts',    invertSort: false },
-  7:  { name: 'Platform Diversity Score',     shortName: 'Diversity',   format: 'ratio',    invertSort: false },
-  8:  { name: 'YouTube Weekly Velocity',      shortName: 'YT Views',    format: 'number',   invertSort: false },
-  9:  { name: 'Latest Release Recency',       shortName: 'Release',     format: 'recency',  invertSort: true  },
-  10: { name: 'News & Press Mentions',        shortName: 'Press',       format: 'articles', invertSort: false },
-  11: { name: 'Apple Music Catalog Activity', shortName: 'AM Releases', format: 'posts',    invertSort: false },
-};
-
-const KPI_NARRATIVE = {
-  1: 'Total Social Reach is the headline number for label negotiations and brand partnerships. It represents the combined addressable audience across every platform — the larger the reach, the greater the leverage when pricing sync deals, sponsorships, and touring guarantees.',
-  2: 'Reach Velocity is an early-warning signal. A sustained uptick of 2 %+ daily often precedes a breakout moment — an ideal time to increase marketing spend and pitch editorial playlists before the wave crests. A sustained decline signals audience fatigue or platform disengagement that needs A&R attention.',
-  3: 'Engagement Rate separates authentic fanbases from inflated follower counts. A highly engaged smaller audience will convert to ticket sales and merchandise at far higher rates than a passive mega-following. Use this metric to identify artists who are ready for premium brand integrations.',
-  4: "Spotify Monthly Listeners is the industry's de facto streaming power metric — used by promoters, labels, and sync agents to gauge real-time commercial relevance. Above 20 M qualifies an artist for headliner status on major festival circuits.",
-  5: 'Spotify Listener Trend measures release impact and streaming momentum. A 20 %+ spike typically indicates a successful new drop or playlist addition. Sustained positive trend over multiple weeks signals genuine catalogue growth — a key argument for increased A&R investment.',
-  6: 'Content Velocity tracks how actively an artist is feeding the algorithm. Consistent posting (7–14 pieces per week) sustains platform reach without paid promotion. A sudden drop in velocity is often the earliest observable signal of an artist going inactive or entering a contract dispute.',
-  7: 'Platform Diversity Score measures distribution risk. An artist reliant on a single platform is vulnerable to algorithm changes or account issues. A score above 0.7 indicates a healthy multi-platform presence that protects revenue streams and reaches different demographic segments.',
-  8: "YouTube Weekly Velocity captures the visual content engine — the primary driver of new fan acquisition. Average views across the artist's 5 most recent uploads signal whether music video investments are paying off and whether the artist's content is being pushed by YouTube's algorithm. Sustained high values predict streaming uplift weeks before it shows on Spotify.",
-  9: 'Release Recency tracks how fresh the catalogue is in the streaming ecosystem. Artists beyond 120 days without a release see measurable audience retention decay. Cross-checked across Spotify and Apple Music — uses whichever platform indexed the latest drop first. Use this leaderboard in ascending order to identify artists urgently needing a content drop to re-enter the algorithm cycle.',
-  10: 'News & Press Mentions quantify cultural relevance beyond owned channels. High press velocity amplifies all other KPIs — streaming, social growth, and engagement all lift when an artist is in the news cycle. Monitor this metric to time campaign activations with organic media momentum.',
-  11: "Apple Music Catalog Activity counts the releases — singles, EPs, albums — that landed on iTunes / Apple Music in the last 90 days. Apple's ecosystem skews older and more affluent than Spotify, so a strong cadence here signals reach into the demographics that drive premium pricing for sync, sponsorship, and tour. Pair with KPI 5 (Spotify Listener Trend) to detect platform-asymmetric breakouts.",
-};
+const LB_KPI_COLOR = Object.fromEntries(KPI_REGISTRY.map(k => [k.id, k.color]));
+const KPI_META = Object.fromEntries(KPI_REGISTRY.map(k => [k.id, k]));
 
 function fmtRecencyLb(days) {
   if (days === 0) return 'today';
@@ -55,6 +25,22 @@ function fmtValueLb(val, format) {
     case 'ratio':    return `${(val * 100).toFixed(0)}%`;
     case 'articles': return `${val}`;
   }
+}
+
+function renderKpiDetails(meta) {
+  const domain = getDomainMeta(meta.domain);
+  return `
+    <details open class="lb-details" style="margin-top:0.75rem;padding-top:0.6rem;border-top:1px solid rgba(255,255,255,0.08)">
+      <summary class="lb-details-summary" style="cursor:pointer;list-style:none;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-text-primary);display:flex;align-items:center;justify-content:space-between;gap:0.5rem;font-weight:700">
+        <span>Details</span>
+        <span style="font-size:0.7rem;opacity:0.75">Open</span>
+      </summary>
+      <div class="lb-details-body" style="margin-top:0.65rem;display:grid;gap:0.5rem">
+        <p style="margin:0;display:flex;justify-content:space-between;gap:0.75rem"><span class="lb-details-label" style="color:var(--color-text-muted);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase">Domain</span><span class="lb-details-value" style="color:${domain.color};font-weight:700">${escapeHtml(domain.label)}</span></p>
+        <p style="margin:0;line-height:1.45"><span class="lb-details-label" style="display:block;color:var(--color-text-muted);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem">Why it matters</span><span class="lb-details-value" style="color:var(--color-text-secondary)">${escapeHtml(meta.description || meta.narrative || 'No detail available yet.')}</span></p>
+      </div>
+    </details>
+  `;
 }
 
 function buildLeaderRows(artists, kpiId, asc) {
@@ -83,7 +69,7 @@ function renderKpiLeaderboard(kpiId, artists, limit) {
   if (!meta) return document.createTextNode('');
 
   let asc = meta.invertSort;
-  const accentColor = LB_KPI_COLOR[kpiId] ?? '#999';
+  const accentColor = meta.color ?? '#999';
   const showDelta = kpiId !== 6 && kpiId !== 7 && kpiId !== 9 && kpiId !== 10;
 
   const wrap = document.createElement('div');
@@ -127,7 +113,8 @@ function renderKpiLeaderboard(kpiId, artists, limit) {
           </div>
           <button class="lb-sort-btn" id="lb-sort-${kpiId}" title="${asc ? 'Sort descending' : 'Sort ascending'}" aria-label="Sort ${asc ? 'descending' : 'ascending'}">${asc ? '↑ ASC' : '↓ DESC'}</button>
         </div>
-        ${KPI_NARRATIVE[kpiId] ? `<p class="lb-narrative">${escapeHtml(KPI_NARRATIVE[kpiId])}</p>` : ''}
+        ${meta.narrative ? `<p class="lb-narrative">${escapeHtml(meta.narrative)}</p>` : ''}
+        ${renderKpiDetails(meta)}
       </div>
       <div class="lb-colhead">
         <span>#</span><span>Artist</span>
@@ -157,7 +144,8 @@ function renderLeaderboards(snapshot) {
 
   const grid = document.createElement('div');
   grid.className = 'lb-grid';
-  [1,2,3,4,5,6,7,8,9,10,11].forEach((id, i) => {
+  KPI_REGISTRY.forEach((meta, i) => {
+    const id = meta.id;
     const wrap = document.createElement('div');
     wrap.className = 'anim-fade-up';
     wrap.style.animationDelay = `${100 + Math.min(i * 35, 900)}ms`;

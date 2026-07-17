@@ -124,19 +124,12 @@ function renderTabNav(active, counts, onSelect) {
 
 // ── Overview page ────────────────────────────────────────────────────
 
-const KPI_QUICK_REF = [
-  { id: '01', name: 'Total Social Reach',           desc: 'Sum of followers across all platforms — raw audience size and label leverage.' },
-  { id: '02', name: 'Reach Velocity',               desc: '% change in total reach vs. prior snapshot — early signal of a breakout or decline.' },
-  { id: '03', name: 'Engagement Rate',              desc: 'Likes + comments on recent posts ÷ total followers — quality of audience connection.' },
-  { id: '04', name: 'Spotify Monthly Listeners',    desc: "Industry's standard streaming power metric, pulled directly from Spotify." },
-  { id: '05', name: 'Spotify Listener Trend',       desc: '% change in monthly listeners — measures release impact and streaming momentum.' },
-  { id: '06', name: 'Content Velocity',             desc: 'Posts published across all platforms in the last 7 days — artist activity level.' },
-  { id: '07', name: 'Platform Diversity',           desc: 'Active platforms ÷ total platforms — flags single-platform dependency risk.' },
-  { id: '08', name: 'YouTube Weekly Velocity',      desc: 'Average views across the 5 most recent YouTube videos — visual content performance and algorithmic push.' },
-  { id: '09', name: 'Release Recency',              desc: 'Days since last release on Spotify or Apple Music — flags artists going dark on new material.' },
-  { id: '10', name: 'News & Press Mentions',        desc: 'Unique articles mentioning the artist in the last 7 days — cultural relevance signal.' },
-  { id: '11', name: 'Apple Music Catalog Activity', desc: "Count of singles / EPs / albums on iTunes in the last 90 days — release cadence on Apple's platform." },
-];
+const KPI_QUICK_REF = KPI_REGISTRY.map(k => ({
+  id: String(k.id).padStart(2, '0'),
+  name: k.name,
+  desc: k.description,
+  domain: getDomainMeta(k.domain),
+}));
 
 const TIER_LEGEND = [
   ['●', '#fff',  'Mega',     '>50M total reach — global superstar'],
@@ -155,13 +148,14 @@ const CONFIDENCE_LEGEND = [
 
 function renderOverview(roster, snapshot, briefing) {
   const alertCount = snapshot.artists.reduce((n, a) => n + a.kpis.filter(k => k.alert !== null).length, 0);
+  const domainCounts = getDomainCounts();
 
   const kpiRefItems = KPI_QUICK_REF.map(k => `
     <div class="kpi-ref-item">
       <span class="kpi-ref-id">${k.id}</span>
       <div>
         <p class="kpi-ref-name">${escapeHtml(k.name)}</p>
-        <p class="kpi-ref-desc">${escapeHtml(k.desc)}</p>
+        <p class="kpi-ref-desc"><span style="color:${k.domain.color}">${escapeHtml(k.domain.label)}</span> · ${escapeHtml(k.desc)}</p>
       </div>
     </div>`).join('');
 
@@ -169,6 +163,12 @@ function renderOverview(roster, snapshot, briefing) {
     <div class="badge-row">
       <span class="badge-row-dot" style="color:${color}">${dot}</span>
       <div><span class="badge-row-label">${tier}</span><span class="badge-row-desc">${desc}</span></div>
+    </div>`).join('');
+
+  const domainLegendHtml = DOMAIN_REGISTRY.map(domain => `
+    <div class="badge-row">
+      <span class="badge-row-dot" style="color:${domain.color}">●</span>
+      <div><span class="badge-row-label">${domain.label}</span><span class="badge-row-desc">${domain.description} (${domainCounts[domain.id] ?? 0} KPIs)</span></div>
     </div>`).join('');
 
   const confLegendHtml = CONFIDENCE_LEGEND.map(([dots, label, desc]) => `
@@ -179,7 +179,7 @@ function renderOverview(roster, snapshot, briefing) {
 
   const stats = [
     ['Artists tracked', roster.artist_count.toString()],
-    ['KPIs per artist',  '11'],
+    ['KPIs per artist',  String(getKpiCount())],
     ['Stories today',    briefing.items.length.toString()],
     ['Data as of',       snapshot.snapshot_date],
   ].map(([label, val]) => `
@@ -194,7 +194,7 @@ function renderOverview(roster, snapshot, briefing) {
         <p class="ref-eyebrow">What is this?</p>
         <h2>Your daily intelligence briefing<br>for the Sony Music Latin roster.</h2>
         <p class="lede">Sony Latin Pulse runs a daily data pipeline that harvests social metrics, streaming numbers,
-        and press mentions for every artist on the roster. It computes 11 KPIs per artist,
+        and press mentions for every artist on the roster. It computes ${getKpiCount()} KPIs per artist,
         detects significant changes, and surfaces the most newsworthy developments — all styled
         as a monochrome editorial newsroom.</p>
         <div class="ov-stat-row">${stats}</div>
@@ -221,7 +221,7 @@ function renderOverview(roster, snapshot, briefing) {
           <div class="ov-card-head"><span class="ov-card-icon">02</span><h3 class="ov-card-title">Artist Roster</h3></div>
           <div class="ov-card-body">
             <p>The <strong>Artist Roster</strong> tab shows every artist as a card with their photo, tier, and 4 headline KPIs at a glance.</p>
-            <p><strong>Click any card</strong> to expand all 11 KPIs with current values, trend arrows (▲ up / ▼ down), and percentage deltas versus the previous snapshot.</p>
+            <p><strong>Click any card</strong> to expand all ${getKpiCount()} KPIs with current values, trend arrows (▲ up / ▼ down), and percentage deltas versus the previous snapshot.</p>
             <p>Artist images are grayscale by default — <strong>hover</strong> any image to reveal color. Tier dots (white = Mega, gray = Major, dark = Rising/Emerging) appear top-right of each photo.</p>
           </div>
         </div>
@@ -230,7 +230,7 @@ function renderOverview(roster, snapshot, briefing) {
         <div class="ov-card">
           <div class="ov-card-head"><span class="ov-card-icon">03</span><h3 class="ov-card-title">KPI Leaderboards</h3></div>
           <div class="ov-card-body">
-            <p>The <strong>KPI Leaderboards</strong> tab ranks the top 5 artists for each of the 11 KPIs side-by-side.</p>
+            <p>The <strong>KPI Leaderboards</strong> tab ranks the top 5 artists for each of the ${getKpiCount()} KPIs side-by-side.</p>
             <p>Use the <strong>↓ DESC / ↑ ASC</strong> toggle on any leaderboard to flip the sort direction — useful for spotting artists at the bottom of a metric (e.g. longest release gap, lowest engagement rate).</p>
             <p>Delta percentages (Δ column) show the change since the last snapshot. Trend arrows color-code each movement: white = up, gray = down, dash = flat.</p>
           </div>
@@ -250,8 +250,19 @@ function renderOverview(roster, snapshot, briefing) {
     <div class="anim-fade-up" style="animation-delay:350ms">
       <div class="kpi-ref-card">
         <p class="ref-eyebrow">KPI Reference</p>
-        <h3 class="ref-title">The 11 tracked metrics — what each one means</h3>
+        <h3 class="ref-title">The ${getKpiCount()} tracked metrics — what each one means</h3>
         <div class="kpi-ref-grid">${kpiRefItems}</div>
+      </div>
+    </div>
+
+    <div class="anim-fade-up" style="animation-delay:375ms">
+      <div class="badge-ref-card">
+        <p class="ref-eyebrow">Business domains</p>
+        <h3 class="ref-title">Where the KPIs live today</h3>
+        <div class="badge-grid">
+          <div><p class="badge-col-title">Domain map</p>${domainLegendHtml}</div>
+          <div><p class="badge-col-title">What this means</p><div class="badge-row"><span class="badge-row-dot" style="color:var(--color-text-muted)">●</span><div><span class="badge-row-label">Financial / Contracts ready</span><span class="badge-row-desc">The registry already reserves slots for internal business metrics, so we can swap in finance and contract KPIs without rewriting the newsroom shell.</span></div></div></div>
+        </div>
       </div>
     </div>
 

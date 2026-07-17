@@ -325,7 +325,7 @@ function renderFooter(roster, snapshot) {
       </div>
       <div>
         <p class="footer-label">Version</p>
-        <p class="footer-value small">Sony Latin Pulse v0.1 · ${roster.artist_count} artists · 11 KPIs</p>
+        <p class="footer-value small">Sony Latin Pulse v0.1 · ${roster.artist_count} artists · ${getKpiCount()} KPIs</p>
       </div>
     </div>
     <div class="footer-bottom">

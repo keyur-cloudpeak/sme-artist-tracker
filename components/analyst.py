@@ -128,10 +128,6 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
           <span class="chat-title">AI Analyst</span>
           <span class="chat-subtitle">· Click a question for a full-page answer · type below for quick chat</span>
         </div>
-        <div class="chat-header-right">
-          ${hasHistory ? `<button class="chat-clear-btn" id="chat-clear-btn">Clear</button>` : ''}
-          <span class="chat-caret">${open ? '▲' : '▼'}</span>
-        </div>
       </div>
       ${open ? `
         <div>

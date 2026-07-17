@@ -129,7 +129,6 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
           <span class="chat-subtitle">· Click a question for a full-page answer · type below for quick chat</span>
         </div>
         <div class="chat-header-right">
-          ${!apiKey ? `<button class="chat-key-badge" id="chat-key-btn">SET API KEY</button>` : `<button class="chat-key-badge" id="chat-key-btn">API KEY SET</button>`}
           ${hasHistory ? `<button class="chat-clear-btn" id="chat-clear-btn">Clear</button>` : ''}
           <span class="chat-caret">${open ? '▲' : '▼'}</span>
         </div>

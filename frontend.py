@@ -113,7 +113,7 @@ def get_frontend() -> str:
       bodySlot.appendChild(chat);
       const analyst = renderAnalystPage(
         state.selectedQuestion, systemPrompt, snapshot.snapshot_date,
-        getApiKey, handleQuestionNavigate,
+        handleQuestionNavigate,
       );
       bodySlot.appendChild(analyst);
     }

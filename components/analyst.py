@@ -4,8 +4,60 @@ def get_analyst() -> str:
    (converted from src/components/chat-agent.tsx + analyst-page.tsx)
    ══════════════════════════════════════════════════════════════════════ */
 
-const API_KEY_STORAGE = 'sml-pulse-api-key'; // kept only to migrate old saved keys out of localStorage
-function getProxyUrl() { return window.PROXY_CHAT_URL || 'http://localhost:8502/chat'; }
+// ── Streamlit postMessage bridge ─────────────────────────────────────────
+// Instead of calling a proxy server, we post the question to the Streamlit
+// parent frame. Python calls Anthropic server-side and posts the answer back.
+
+const _pendingCallbacks = {};   // request_id → { onChunk, onDone, onError }
+
+// Listen for answers coming back from Streamlit Python
+window.addEventListener('message', function(e) {
+  if (!e.data) return;
+  if (e.data.type === 'sml_claude_answer') {
+    const cb = _pendingCallbacks[e.data.request_id];
+    if (cb) {
+      delete _pendingCallbacks[e.data.request_id];
+      if (e.data.error) {
+        cb.onError(e.data.error);
+      } else {
+        cb.onChunk(e.data.answer || '');
+        cb.onDone();
+      }
+    }
+  }
+});
+
+function streamAnswer(proxyUrl, systemPrompt, messages, onChunk, onDone, onError) {
+  // proxyUrl is ignored — we route through Streamlit instead
+  const requestId = 'req_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+
+  _pendingCallbacks[requestId] = { onChunk, onDone, onError };
+
+  // Timeout safety: 60 s
+  const timeout = setTimeout(function() {
+    if (_pendingCallbacks[requestId]) {
+      delete _pendingCallbacks[requestId];
+      onError('Request timed out. Please try again.');
+    }
+  }, 60000);
+
+  const originalDone  = onDone;
+  const originalError = onError;
+  _pendingCallbacks[requestId].onDone  = function() { clearTimeout(timeout); originalDone(); };
+  _pendingCallbacks[requestId].onError = function(m) { clearTimeout(timeout); originalError(m); };
+
+  // Post question to Streamlit parent frame
+  const payload = {
+    type:          'sml_claude_question',
+    question:      messages[messages.length - 1]?.content || '',
+    messages:      messages.slice(0, -1),   // history without current question
+    system_prompt: systemPrompt,
+    request_id:    requestId,
+  };
+
+  // The iframe is sandboxed, so we post to window.parent (Streamlit host)
+  window.parent.postMessage(payload, '*');
+}
 
 // ── Markdown-ish answer renderer (from analyst-page.tsx) ────────────────
 
@@ -26,11 +78,11 @@ function renderAnswerHtml(text) {
     const trimmed = line.trim();
     if (!trimmed) return `<div style="height:8px"></div>`;
 
-    const numMatch = trimmed.match(/^(\d+)[.)]\s+(.+)/);
+    const numMatch = trimmed.match(/^(\d+)[.)]\\s+(.+)/);
     if (numMatch) {
       return `<div class="answer-li"><span class="answer-li-num">${numMatch[1]}.</span><p>${inlineFormatted(numMatch[2])}</p></div>`;
     }
-    const bulletMatch = trimmed.match(/^[-•*]\s+(.+)/);
+    const bulletMatch = trimmed.match(/^[-•*]\\s+(.+)/);
     if (bulletMatch) {
       return `<div class="answer-li"><span class="answer-li-bullet">▪</span><p>${inlineFormatted(bulletMatch[1])}</p></div>`;
     }
@@ -67,7 +119,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
     let accumulated = '';
     streamAnswer(
-      getProxyUrl(), systemPrompt, messages.slice(0, -1),
+      '', systemPrompt, messages.slice(0, -1),
       text => {
         accumulated += text;
         messages[messages.length - 1] = { role: 'assistant', content: accumulated };
@@ -198,7 +250,7 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestio
 
     let accumulated = '';
     streamAnswer(
-      getProxyUrl(), systemPrompt, [{ role: 'user', content: question }],
+      '', systemPrompt, [{ role: 'user', content: question }],
       text => {
         if (myToken !== streamToken) return;
         accumulated += text;
@@ -321,3 +373,4 @@ function renderFooter(roster, snapshot) {
   return el;
 }
 """
+

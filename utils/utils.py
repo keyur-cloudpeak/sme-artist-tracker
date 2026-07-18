@@ -483,35 +483,31 @@ INSTRUCTIONS:
 - For the dedicated answer page, write a comprehensive answer (300–500 words minimum).`;
 }
 
-// ── Streaming API call (browser → Anthropic API directly) ──────────────
+// ── Streaming API call (browser → local proxy → Anthropic) ──────────────
+// The API key NEVER touches the browser. The proxy (proxy.py) holds it
+// server-side and forwards the request to Anthropic with proper auth.
 
-async function streamAnswer(apiKey, systemPrompt, messages, onChunk, onDone, onError) {
+async function streamAnswer(proxyUrl, systemPrompt, messages, onChunk, onDone, onError) {
   let response;
   try {
-    response = await fetch('https://api.anthropic.com/v1/messages', {
+    response = await fetch(proxyUrl, {
       method: 'POST',
-      headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-        'anthropic-dangerous-direct-browser-access': 'true',
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: 'claude-sonnet-4-5',
         max_tokens: 2048,
-        stream: true,
         system: systemPrompt,
         messages: messages.map(m => ({ role: m.role, content: m.content })),
       }),
     });
   } catch {
-    onError('Network error — check your connection.');
+    onError('Network error — check your connection or ensure the app server is running.');
     return;
   }
 
   if (!response.ok) {
     const errText = await response.text().catch(() => response.statusText);
-    onError(`API error ${response.status}: ${errText.slice(0, 120)}`);
+    onError(`Proxy error ${response.status}: ${errText.slice(0, 120)}`);
     return;
   }
 
@@ -532,6 +528,7 @@ async function streamAnswer(apiKey, systemPrompt, messages, onChunk, onDone, onE
       if (!raw || raw === '[DONE]') continue;
       try {
         const parsed = JSON.parse(raw);
+        if (parsed.type === 'error') { onError(parsed.error || 'Unknown proxy error'); return; }
         if (parsed.type === 'content_block_delta' && parsed.delta?.type === 'text_delta') {
           onChunk(parsed.delta.text);
         }

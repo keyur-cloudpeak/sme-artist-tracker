@@ -4,9 +4,8 @@ def get_analyst() -> str:
    (converted from src/components/chat-agent.tsx + analyst-page.tsx)
    ══════════════════════════════════════════════════════════════════════ */
 
-const API_KEY_STORAGE = 'sml-pulse-api-key';
-function getApiKey() { return window.INJECTED_API_KEY || localStorage.getItem(API_KEY_STORAGE) || ''; }
-function setApiKey(key) { localStorage.setItem(API_KEY_STORAGE, key); }
+const API_KEY_STORAGE = 'sml-pulse-api-key'; // kept only to migrate old saved keys out of localStorage
+function getProxyUrl() { return window.PROXY_CHAT_URL || 'http://localhost:8502/chat'; }
 
 // ── Markdown-ish answer renderer (from analyst-page.tsx) ────────────────
 
@@ -45,7 +44,6 @@ function renderAnswerHtml(text) {
 // ── Chat agent panel ──────────────────────────────────────────────────
 
 function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
-  let apiKey = getApiKey();
   let open = true;
   let messages = [];
   let loading = false;
@@ -57,7 +55,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
   function send(question) {
     const q = question.trim();
-    if (!q || loading || !apiKey) return;
+    if (!q || loading) return;
 
     messages.push({ role: 'user', content: q });
     messages.push({ role: 'assistant', content: '' });
@@ -69,7 +67,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
     let accumulated = '';
     streamAnswer(
-      apiKey, systemPrompt, messages.slice(0, -1),
+      getProxyUrl(), systemPrompt, messages.slice(0, -1),
       text => {
         accumulated += text;
         messages[messages.length - 1] = { role: 'assistant', content: accumulated };
@@ -112,9 +110,9 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
   function render() {
     const hasHistory = messages.length > 0;
     const questionsHtml = SUGGESTED_QUESTIONS.map((q, i) => `
-      <button class="chat-q-chip" data-q-index="${i}" ${!apiKey ? 'disabled' : ''}
+      <button class="chat-q-chip" data-q-index="${i}"
         style="border-color:${q.color}55;color:${q.color}cc"
-        onmouseover="if(${!!apiKey}){this.style.borderColor='${q.color}';this.style.color='${q.color}';this.style.background='${q.color}12'}"
+        onmouseover="this.style.borderColor='${q.color}';this.style.color='${q.color}';this.style.background='${q.color}12'"
         onmouseout="this.style.borderColor='${q.color}55';this.style.color='${q.color}cc';this.style.background='transparent'">
         <span class="chat-q-num" style="color:${q.color}">${String(i + 1).padStart(2, '0')}</span>
         <span>${escapeHtml(q.text)}</span>
@@ -131,36 +129,20 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
       </div>
       ${open ? `
         <div>
-          ${!apiKey ? `
-            <div class="chat-nokey-notice">
-              <p>Enter your Anthropic API key to enable the AI analyst (stored only in this browser's local storage).</p>
-              <input type="password" id="chat-key-input" placeholder="sk-ant-...">
-            </div>
-          ` : ''}
           <div class="chat-questions">
             <p class="chat-questions-label">Top questions — click for a dedicated full-page answer ↗</p>
             <div class="chat-q-grid">${questionsHtml}</div>
           </div>
           ${hasHistory ? `<div class="chat-history">${messages.map((m, i) => chatMessageHtml(m, i === messages.length - 1, loading)).join('')}</div>` : ''}
           <div class="chat-input-row">
-            <textarea class="chat-textarea" id="chat-textarea" rows="1" placeholder="${apiKey ? 'Type a custom question for a quick inline answer… (Enter to send)' : 'API key required'}" ${!apiKey || loading ? 'disabled' : ''}></textarea>
-            <button class="chat-send-btn" id="chat-send-btn" ${loading || !apiKey ? 'disabled' : ''}>${loading ? 'Wait' : 'Send ↵'}</button>
+            <textarea class="chat-textarea" id="chat-textarea" rows="1" placeholder="${loading ? 'Waiting…' : 'Type a custom question for a quick inline answer… (Enter to send)'}" ${loading ? 'disabled' : ''}></textarea>
+            <button class="chat-send-btn" id="chat-send-btn" ${loading ? 'disabled' : ''}>${loading ? 'Wait' : 'Send ↵'}</button>
           </div>
         </div>
       ` : ''}
     `;
 
     el.querySelector('#chat-header-toggle').addEventListener('click', () => { open = !open; render(); });
-
-    const keyBtn = el.querySelector('#chat-key-btn');
-    if (keyBtn) keyBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      const val = prompt('Enter your Anthropic API key (kept only in this browser):', apiKey);
-      if (val !== null) { apiKey = val.trim(); setApiKey(apiKey); render(); }
-    });
-
-    const keyInput = el.querySelector('#chat-key-input');
-    if (keyInput) keyInput.addEventListener('change', e => { apiKey = e.target.value.trim(); setApiKey(apiKey); render(); });
 
     const clearBtn = el.querySelector('#chat-clear-btn');
     if (clearBtn) clearBtn.addEventListener('click', e => { e.stopPropagation(); messages = []; render(); });
@@ -192,7 +174,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
 // ── Analyst full-page answer ─────────────────────────────────────────
 
-function renderAnalystPage(question, systemPrompt, snapshotDate, apiKeyGetter, onSelectQuestion) {
+function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestion) {
   const el = document.createElement('div');
   el.className = 'analyst-page';
 
@@ -202,8 +184,7 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, apiKeyGetter, o
   let streamToken = 0;
 
   function startStream() {
-    const apiKey = apiKeyGetter();
-    if (!question || !apiKey) { render(); return; }
+    if (!question) { render(); return; }
 
     const myToken = ++streamToken;
     answer = '';
@@ -213,7 +194,7 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, apiKeyGetter, o
 
     let accumulated = '';
     streamAnswer(
-      apiKey, systemPrompt, [{ role: 'user', content: question }],
+      getProxyUrl(), systemPrompt, [{ role: 'user', content: question }],
       text => {
         if (myToken !== streamToken) return;
         accumulated += text;
@@ -293,7 +274,7 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, apiKeyGetter, o
   }
 
   render();
-  if (question && apiKeyGetter()) startStream();
+  if (question) startStream();
 
   el.refreshQuestion = function (newQuestion) {
     question = newQuestion;

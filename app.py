@@ -3,6 +3,9 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json
 
+from proxy import start_proxy_if_needed, PROXY_PORT
+start_proxy_if_needed()
+
 from utils.utils import get_utils
 from theme.theme import get_theme
 from components.overview import get_overview
@@ -80,11 +83,8 @@ try:
     
     loader_placeholder.empty()
 
-    # Get API key from Streamlit secrets or environment variable
-    try:
-        anthropic_api_key = st.secrets.get("ANTHROPIC_API_KEY", os.environ.get("ANTHROPIC_API_KEY", ""))
-    except Exception:
-        anthropic_api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+    # NOTE: The API key is NEVER sent to the browser.
+    # The JS calls the local proxy at PROXY_PORT, which forwards to Anthropic server-side.
 
     html_content = f"""
     <!doctype html>
@@ -121,7 +121,8 @@ try:
           window.INJECTED_ROSTER = {roster_json};
           window.INJECTED_SNAPSHOT = {snapshot_json};
           window.INJECTED_NEWS = {news_json};
-          window.INJECTED_API_KEY = "{anthropic_api_key}";
+          // API key is NEVER sent here — the browser calls the local proxy instead.
+          window.PROXY_CHAT_URL = "http://localhost:{PROXY_PORT}/chat";
         </script>
 
         <script>

@@ -1,8 +1,6 @@
 import os
 import streamlit as st
 import streamlit.components.v1 as components
-import json
-import anthropic
 
 from utils.utils import get_utils
 from theme.theme import get_theme
@@ -97,33 +95,7 @@ try:
 except ImportError:
     pass
 
-# ── Anthropic client (server-side only, key never sent to browser) ─────────
 
-def _get_api_key() -> str:
-    key = os.environ.get("ANTHROPIC_API_KEY", "")
-    if not key:
-        try:
-            key = st.secrets.get("ANTHROPIC_API_KEY", "")
-        except Exception:
-            pass
-    return key
-
-def _call_anthropic(system_prompt: str, messages: list) -> str:
-    """Call Anthropic API server-side and return full response text."""
-    api_key = _get_api_key()
-    if not api_key:
-        return "⚠ API key not configured. Please set ANTHROPIC_API_KEY in your environment or Streamlit secrets."
-    try:
-        client = anthropic.Anthropic(api_key=api_key)
-        response = client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=2048,
-            system=system_prompt,
-            messages=[{"role": m["role"], "content": m["content"]} for m in messages],
-        )
-        return response.content[0].text if response.content else ""
-    except Exception as e:
-        return f"⚠ AI error: {str(e)}"
 
 # ── Session state initialisation ───────────────────────────────────────────
 
@@ -136,42 +108,7 @@ if "ai_answer" not in st.session_state:
 if "ai_system_prompt" not in st.session_state:
     st.session_state.ai_system_prompt = ""
 
-# ── Message bridge: listen for postMessages from iframe ───────────────────
-# This tiny snippet lives in the Streamlit parent frame, intercepts
-# 'sml_claude_question' messages from the sandboxed iframe, and uses
-# Streamlit's setComponentValue mechanism to trigger a Python rerun.
 
-BRIDGE_JS = """
-<script>
-(function() {
-  // Receive question from iframe
-  window.addEventListener('message', function(e) {
-    if (!e.data || e.data.type !== 'sml_claude_question') return;
-    const payload = {
-      question: e.data.question,
-      messages: e.data.messages || [],
-      system_prompt: e.data.system_prompt || '',
-      request_id: e.data.request_id || Date.now().toString()
-    };
-    // Send to Streamlit via the component value mechanism
-    window.parent.postMessage({
-      type: 'streamlit:setComponentValue',
-      value: payload
-    }, '*');
-  });
-
-  // Also listen for answers coming from Streamlit to relay back to iframe
-  window.addEventListener('message', function(e) {
-    if (!e.data || e.data.type !== 'sml_claude_answer_relay') return;
-    // Forward to all iframes
-    const frames = document.querySelectorAll('iframe');
-    frames.forEach(function(f) {
-      try { f.contentWindow.postMessage(e.data, '*'); } catch(err) {}
-    });
-  });
-})();
-</script>
-"""
 
 try:
     from utils.db import fetch_roster_data, fetch_snapshot_data, fetch_news_data
@@ -279,97 +216,7 @@ try:
 
     components.html(html_content, height=10000, scrolling=True)
 
-    # ── Streamlit-side AI handler ──────────────────────────────────────────
-    # A tiny invisible component that captures postMessages from the iframe
-    # via Streamlit's component value mechanism, triggers a Python AI call,
-    # and injects the answer back to the iframe via another postMessage.
 
-    # Use query params to pass the pending question across reruns
-    query_params = st.query_params.to_dict()
-    pending_req = st.session_state.get("_pending_ai_req")
-
-    # Hidden bridge component — receives postMessage from iframe JS
-    bridge_value = components.html(
-        f"""
-        <script>
-        (function() {{
-          function sendToStreamlit(data) {{
-            window.parent.postMessage({{
-              isStreamlitMessage: true,
-              type: 'streamlit:setComponentValue',
-              value: data
-            }}, '*');
-          }}
-
-          window.addEventListener('message', function(e) {{
-            if (!e.data) return;
-            // Forward AI answer back into the dashboard iframe
-            if (e.data.type === 'sml_claude_answer') {{
-              const iframes = window.parent.document.querySelectorAll('iframe');
-              iframes.forEach(function(f) {{
-                try {{ f.contentWindow.postMessage(e.data, '*'); }} catch(err) {{}}
-              }});
-            }}
-          }});
-
-          // Listen for questions coming from sibling iframes (the dashboard)
-          window.parent.addEventListener('message', function(e) {{
-            if (!e.data || e.data.type !== 'sml_claude_question') return;
-            sendToStreamlit({{
-              question: e.data.question,
-              messages: JSON.stringify(e.data.messages || []),
-              system_prompt: e.data.system_prompt || '',
-              request_id: e.data.request_id || String(Date.now())
-            }});
-          }});
-        }})();
-        </script>
-        """,
-        height=0,
-        key="ai_bridge"
-    )
-
-    # Process AI request if bridge sent one
-    if bridge_value and isinstance(bridge_value, dict) and bridge_value.get("question"):
-        req_id = bridge_value.get("request_id", "")
-        # Avoid reprocessing same request
-        if req_id != st.session_state.get("_last_req_id"):
-            st.session_state["_last_req_id"] = req_id
-            question = bridge_value["question"]
-            system_prompt = bridge_value.get("system_prompt", "")
-            try:
-                messages_raw = bridge_value.get("messages", "[]")
-                messages = json.loads(messages_raw) if isinstance(messages_raw, str) else messages_raw
-            except Exception:
-                messages = []
-
-            # Append current question to message history
-            messages_to_send = messages + [{"role": "user", "content": question}]
-
-            # Call Anthropic server-side
-            answer = _call_anthropic(system_prompt, messages_to_send)
-
-            # Inject answer back to the dashboard iframe via JS
-            components.html(
-                f"""
-                <script>
-                (function() {{
-                  var answer = {json.dumps(answer)};
-                  var reqId  = {json.dumps(req_id)};
-                  var payload = {{ type: 'sml_claude_answer', answer: answer, request_id: reqId }};
-                  // Post to parent which will forward to all sibling iframes
-                  window.parent.postMessage(payload, '*');
-                  // Also try direct sibling injection
-                  var frames = window.parent.document.querySelectorAll('iframe');
-                  frames.forEach(function(f) {{
-                    try {{ f.contentWindow.postMessage(payload, '*'); }} catch(e) {{}}
-                  }});
-                }})();
-                </script>
-                """,
-                height=0,
-                key=f"ai_answer_{req_id}"
-            )
 
     pass  # Fullscreen CSS already injected at top
 except Exception as e:

@@ -4,59 +4,38 @@ def get_analyst() -> str:
    (converted from src/components/chat-agent.tsx + analyst-page.tsx)
    ══════════════════════════════════════════════════════════════════════ */
 
-// ── Streamlit postMessage bridge ─────────────────────────────────────────
-// Instead of calling a proxy server, we post the question to the Streamlit
-// parent frame. Python calls Anthropic server-side and posts the answer back.
-
-const _pendingCallbacks = {};   // request_id → { onChunk, onDone, onError }
-
-// Listen for answers coming back from Streamlit Python
-window.addEventListener('message', function(e) {
-  if (!e.data) return;
-  if (e.data.type === 'sml_claude_answer') {
-    const cb = _pendingCallbacks[e.data.request_id];
-    if (cb) {
-      delete _pendingCallbacks[e.data.request_id];
-      if (e.data.error) {
-        cb.onError(e.data.error);
-      } else {
-        cb.onChunk(e.data.answer || '');
-        cb.onDone();
-      }
-    }
-  }
-});
+// ── FastAPI backend bridge ─────────────────────────────────────────────────
+// Calls the FastAPI server running on http://localhost:8000/chat
 
 function streamAnswer(proxyUrl, systemPrompt, messages, onChunk, onDone, onError) {
-  // proxyUrl is ignored — we route through Streamlit instead
-  const requestId = 'req_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-
-  _pendingCallbacks[requestId] = { onChunk, onDone, onError };
-
-  // Timeout safety: 60 s
-  const timeout = setTimeout(function() {
-    if (_pendingCallbacks[requestId]) {
-      delete _pendingCallbacks[requestId];
-      onError('Request timed out. Please try again.');
-    }
-  }, 60000);
-
-  const originalDone  = onDone;
-  const originalError = onError;
-  _pendingCallbacks[requestId].onDone  = function() { clearTimeout(timeout); originalDone(); };
-  _pendingCallbacks[requestId].onError = function(m) { clearTimeout(timeout); originalError(m); };
-
-  // Post question to Streamlit parent frame
   const payload = {
-    type:          'sml_claude_question',
-    question:      messages[messages.length - 1]?.content || '',
-    messages:      messages.slice(0, -1),   // history without current question
     system_prompt: systemPrompt,
-    request_id:    requestId,
+    messages: messages,
   };
 
-  // The iframe is sandboxed, so we post to window.parent (Streamlit host)
-  window.parent.postMessage(payload, '*');
+  fetch('https://sme-scraper.vercel.app/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(async response => {
+    if (!response.ok) {
+      const err = await response.text();
+      onError(err);
+      return;
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      onChunk(decoder.decode(value, { stream: true }));
+    }
+    onDone();
+  })
+  .catch(err => {
+    onError(err.toString());
+  });
 }
 
 // ── Markdown-ish answer renderer (from analyst-page.tsx) ────────────────
@@ -107,6 +86,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
   function send(question) {
     const q = question.trim();
+
     if (!q || loading) return;
 
     messages.push({ role: 'user', content: q });
@@ -177,6 +157,10 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
           <span class="chat-live-dot"><span class="chat-live-dot-ping"></span><span class="chat-live-dot-solid"></span></span>
           <span class="chat-title">AI Analyst</span>
           <span class="chat-subtitle">· Click a question for a full-page answer · type below for quick chat</span>
+        </div>
+        <div class="chat-header-right">
+          ${hasHistory ? `<button class="chat-clear-btn" id="chat-clear-btn">Clear</button>` : ''}
+          <span class="chat-caret">${open ? '▲' : '▼'}</span>
         </div>
       </div>
       ${open ? `
@@ -353,7 +337,7 @@ function renderFooter(roster, snapshot) {
       </div>
       <div>
         <p class="footer-label">Version</p>
-        <p class="footer-value small">Sony Latin Pulse v0.1 · ${roster.artist_count} artists · ${getKpiCount()} KPIs</p>
+        <p class="footer-value small">Sony Latin Pulse v0.1 · ${roster.artist_count} artists · 11 KPIs</p>
       </div>
     </div>
     <div class="footer-bottom">
@@ -369,4 +353,3 @@ function renderFooter(roster, snapshot) {
   return el;
 }
 """
-

@@ -10153,6 +10153,78 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 18385567.0,
+          "previous_value": 18503680.0,
+          "delta_absolute": -118113.0,
+          "delta_percent": -0.64,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18385567
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1250000,
+          "previous_value": 1200000,
+          "delta_absolute": 50000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 450,
+          "previous_value": 451,
+          "delta_absolute": -1,
+          "delta_percent": -0.22,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 3500000,
+          "previous_value": 3200000,
+          "delta_absolute": 300000,
+          "delta_percent": 9.38,
+          "trend": "up",
+          "alert": "Major Tour"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 255000,
+          "delta_absolute": -5000,
+          "delta_percent": -1.96,
+          "trend": "down",
+          "alert": null
+        }
       ]
     },
     {

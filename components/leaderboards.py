@@ -7,12 +7,32 @@ def get_leaderboards() -> str:
 const LB_KPI_COLOR = Object.fromEntries(KPI_REGISTRY.map(k => [k.id, k.color]));
 const KPI_META = Object.fromEntries(KPI_REGISTRY.map(k => [k.id, k]));
 
+function fmtNumber(n) {
+  if (n === null || n === undefined) return '—';
+  if (n >= 1_000_000_000) return `${(n / 1_000_000_000).toFixed(1)}B`;
+  if (n >= 1_000_000)     return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000)         return `${(n / 1_000).toFixed(0)}K`;
+  return n.toString();
+}
+
+function fmtCurrency(n) {
+  if (n === null || n === undefined) return '—';
+  const num = Number(n);
+  return `$${fmtNumber(num)}`;
+}
+
 function fmtRecencyLb(days) {
   if (days === 0) return 'today';
   if (days === 1) return '1d ago';
   if (days <= 60) return `${days}d ago`;
   if (days < 365) return `${Math.round(days / 30)}mo ago`;
   return `${(days / 365).toFixed(1)}yr ago`;
+}
+
+function fmtExpiryLb(days) {
+  if (days === null || days === undefined) return '—';
+  if (days < 0) return 'Expired';
+  return fmtRecencyLb(days).replace(' ago', '');
 }
 
 function fmtValueLb(val, format) {
@@ -24,6 +44,9 @@ function fmtValueLb(val, format) {
     case 'posts':    return `${val}`;
     case 'ratio':    return `${(val * 100).toFixed(0)}%`;
     case 'articles': return `${val}`;
+    case 'currency': return fmtCurrency(val);
+    case 'expiry':   return fmtExpiryLb(val);
+    default:         return val.toString();
   }
 }
 
@@ -70,7 +93,7 @@ function renderKpiLeaderboard(kpiId, artists, limit) {
 
   let asc = meta.invertSort;
   const accentColor = meta.color ?? '#999';
-  const showDelta = kpiId !== 6 && kpiId !== 7 && kpiId !== 9 && kpiId !== 10;
+  const showDelta = ![6, 7, 9, 10, 13, 15].includes(kpiId);
 
   const wrap = document.createElement('div');
   wrap.className = 'lb-card';

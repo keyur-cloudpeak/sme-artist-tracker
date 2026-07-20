@@ -60,6 +60,10 @@ function kpiRowHtml(kpi) {
       case 8: displayValue = fmtNumber(v); break;
       case 9: displayValue = fmtRecencyDays(v); break;
       case 10: displayValue = `${v} articles`; break;
+      case 12: displayValue = fmtCurrency(v); break;
+      case 13: displayValue = fmtExpiryDays(v); break;
+      case 14: displayValue = fmtCurrency(v); break;
+      case 15: displayValue = fmtCurrency(v); break;
       default: displayValue = v.toString();
     }
   }
@@ -113,7 +117,7 @@ function renderArtistCard(artist, snapshot, initiallyExpanded) {
 
   function expandedHtml() {
     if (!expanded) return '';
-    const kpisHtml = snapshot.kpis.filter(k => k.kpi_id < 12).map(kpiRowHtml).join('');
+    const kpisHtml = snapshot.kpis.filter(k => k.kpi_id !== 11).map(kpiRowHtml).join('');
     const am = appleMusicPanelHtml(snapshot.kpis.find(k => k.kpi_id === 11));
     return `
       <div class="ac-expanded">

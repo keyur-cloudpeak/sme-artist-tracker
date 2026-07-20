@@ -51,6 +51,7 @@ const CLR = {
 const KPI_COLOR = {
   1: CLR.reach, 2: CLR.reach, 3: CLR.engRate, 4: CLR.spotify, 5: CLR.spotify,
   6: '#22d3ee', 7: '#2dd4bf', 8: '#f472b6', 9: CLR.release, 10: '#fb923c', 11: '#f87171',
+  12: '#a78bfa', 13: '#34d399', 14: '#818cf8', 15: '#f9a8d4',
 };
 
 const TIER_LABEL = { mega: 'MEGA', major: 'MAJOR', rising: 'RISING', emerging: 'EMERGING' };
@@ -81,6 +82,7 @@ const KPI_REGISTRY = [
     format: 'number',
     color: CLR.reach,
     invertSort: false,
+    is_summary: true,
     narrative: 'Total Social Reach is the headline number for label negotiations and brand partnerships. It represents the combined addressable audience across every platform — the larger the reach, the greater the leverage when pricing sync deals, sponsorships, and touring guarantees.',
     description: 'Sum of followers across all platforms — raw audience size and label leverage.',
   },
@@ -92,6 +94,7 @@ const KPI_REGISTRY = [
     format: 'percent',
     color: CLR.reach,
     invertSort: false,
+    is_summary: true,
     narrative: 'Reach Velocity is an early-warning signal. A sustained uptick of 2 %+ daily often precedes a breakout moment — an ideal time to increase marketing spend and pitch editorial playlists before the wave crests. A sustained decline signals audience fatigue or platform disengagement that needs A&R attention.',
     description: '% change in total reach vs. prior snapshot — early signal of a breakout or decline.',
   },
@@ -103,6 +106,7 @@ const KPI_REGISTRY = [
     format: 'percent',
     color: CLR.engRate,
     invertSort: false,
+    is_summary: true,
     narrative: 'Engagement Rate separates authentic fanbases from inflated follower counts. A highly engaged smaller audience will convert to ticket sales and merchandise at far higher rates than a passive mega-following. Use this metric to identify artists who are ready for premium brand integrations.',
     description: 'Likes + comments on recent posts ÷ total followers — quality of audience connection.',
   },
@@ -114,6 +118,7 @@ const KPI_REGISTRY = [
     format: 'number',
     color: CLR.spotify,
     invertSort: false,
+    is_summary: true,
     narrative: "Spotify Monthly Listeners is the industry's de facto streaming power metric — used by promoters, labels, and sync agents to gauge real-time commercial relevance. Above 20 M qualifies an artist for headliner status on major festival circuits.",
     description: "Industry's standard streaming power metric, pulled directly from Spotify.",
   },
@@ -125,6 +130,7 @@ const KPI_REGISTRY = [
     format: 'percent',
     color: CLR.spotify,
     invertSort: false,
+    is_summary: true,
     narrative: 'Spotify Listener Trend measures release impact and streaming momentum. A 20 %+ spike typically indicates a successful new drop or playlist addition. Sustained positive trend over multiple weeks signals genuine catalogue growth — a key argument for increased A&R investment.',
     description: '% change in monthly listeners — measures release impact and streaming momentum.',
   },
@@ -136,6 +142,7 @@ const KPI_REGISTRY = [
     format: 'posts',
     color: '#22d3ee',
     invertSort: false,
+    is_summary: false,
     narrative: 'Content Velocity tracks how actively an artist is feeding the algorithm. Consistent posting (7–14 pieces per week) sustains platform reach without paid promotion. A sudden drop in velocity is often the earliest observable signal of an artist going inactive or entering a contract dispute.',
     description: 'Posts published across all platforms in the last 7 days — artist activity level.',
   },
@@ -147,6 +154,7 @@ const KPI_REGISTRY = [
     format: 'ratio',
     color: '#2dd4bf',
     invertSort: false,
+    is_summary: false,
     narrative: 'Platform Diversity Score measures distribution risk. An artist reliant on a single platform is vulnerable to algorithm changes or account issues. A score above 0.7 indicates a healthy multi-platform presence that protects revenue streams and reaches different demographic segments.',
     description: 'Active platforms ÷ total platforms — flags single-platform dependency risk.',
   },
@@ -158,6 +166,7 @@ const KPI_REGISTRY = [
     format: 'number',
     color: '#f472b6',
     invertSort: false,
+    is_summary: false,
     narrative: "YouTube Weekly Velocity captures the visual content engine — the primary driver of new fan acquisition. Average views across the artist's 5 most recent uploads signal whether music video investments are paying off and whether the artist's content is being pushed by YouTube's algorithm. Sustained high values predict streaming uplift weeks before it shows on Spotify.",
     description: 'Average views across the 5 most recent YouTube videos — visual content performance and algorithmic push.',
   },
@@ -169,6 +178,7 @@ const KPI_REGISTRY = [
     format: 'recency',
     color: CLR.release,
     invertSort: true,
+    is_summary: true,
     narrative: 'Release Recency tracks how fresh the catalogue is in the streaming ecosystem. Artists beyond 120 days without a release see measurable audience retention decay. Cross-checked across Spotify and Apple Music — uses whichever platform indexed the latest drop first. Use this leaderboard in ascending order to identify artists urgently needing a content drop to re-enter the algorithm cycle.',
     description: 'Days since last release on Spotify or Apple Music — flags artists going dark on new material.',
   },
@@ -180,6 +190,7 @@ const KPI_REGISTRY = [
     format: 'articles',
     color: '#fb923c',
     invertSort: false,
+    is_summary: false,
     narrative: 'News & Press Mentions quantify cultural relevance beyond owned channels. High press velocity amplifies all other KPIs — streaming, social growth, and engagement all lift when an artist is in the news cycle. Monitor this metric to time campaign activations with organic media momentum.',
     description: 'Unique articles mentioning the artist in the last 7 days — cultural relevance signal.',
   },
@@ -191,8 +202,57 @@ const KPI_REGISTRY = [
     format: 'posts',
     color: '#f87171',
     invertSort: false,
+    is_summary: false,
     narrative: "Apple Music Catalog Activity counts the releases — singles, EPs, albums — that landed on iTunes / Apple Music in the last 90 days. Apple's ecosystem skews older and more affluent than Spotify, so a strong cadence here signals reach into the demographics that drive premium pricing for sync, sponsorship, and tour. Pair with KPI 5 (Spotify Listener Trend) to detect platform-asymmetric breakouts.",
     description: "Count of singles / EPs / albums on iTunes in the last 90 days — release cadence on Apple's platform.",
+  },
+  {
+    id: 12,
+    name: 'Quarterly Revenue',
+    shortName: 'Revenue',
+    domain: 'financial',
+    format: 'currency',
+    color: '#a78bfa',
+    invertSort: false,
+    is_summary: true,
+    narrative: "Quarterly Revenue tracks the artist's gross earnings from all sources, including streaming, sales, touring, and merchandise. It's a direct measure of commercial success and profitability for the label.",
+    description: "Gross revenue generated in the last quarter — direct measure of commercial success.",
+  },
+  {
+    id: 13,
+    name: 'Contract Expiry',
+    shortName: 'Expiry',
+    domain: 'contracts',
+    format: 'expiry',
+    color: '#34d399',
+    invertSort: true,
+    is_summary: true,
+    narrative: "Contract Expiry tracks the time remaining on the artist's current deal. This is a critical signal for the legal and A&R teams to begin renewal negotiations, typically 12-18 months out from expiry to avoid competitive bids.",
+    description: "Time until current contract expires — key signal for renewal planning.",
+  },
+  {
+    id: 14,
+    name: 'Touring Revenue',
+    shortName: 'Touring',
+    domain: 'financial',
+    format: 'currency',
+    color: '#818cf8',
+    invertSort: false,
+    is_summary: true,
+    narrative: "Touring Revenue measures gross income from live performances. It is a powerful indicator of an artist's direct fan monetization and is often the largest single source of income for established acts. Strong touring numbers justify higher-level investment in production and marketing.",
+    description: "Gross revenue from live performances in the last quarter — a key indicator of direct fan monetization.",
+  },
+  {
+    id: 15,
+    name: 'Merchandise Revenue',
+    shortName: 'Merch',
+    domain: 'financial',
+    format: 'currency',
+    color: '#f9a8d4',
+    invertSort: false,
+    is_summary: true,
+    narrative: "Merchandise Revenue tracks gross income from sales of artist-branded products. This is a key indicator of brand strength and direct-to-fan monetization potential. High merch sales often correlate with a highly engaged and loyal fanbase, justifying investment in new product lines and e-commerce infrastructure.",
+    description: "Gross revenue from merchandise sales in the last quarter — a measure of brand strength and fan loyalty.",
   },
 ];
 
@@ -247,6 +307,10 @@ function formatKpiValue(kpi) {
       return `${(v * 100).toFixed(0)}%`;
     case 'recency':
       return fmtRecencyDays(v);
+    case 'currency':
+      return fmtCurrency(v);
+    case 'expiry':
+      return fmtExpiryDays(v);
     case 'articles':
       return `${v}`;
     default:
@@ -281,6 +345,12 @@ function fmtNumber(n) {
   return n.toString();
 }
 
+function fmtCurrency(n) {
+  if (n === null || n === undefined) return '—';
+  const num = Number(n);
+  return `$${fmtNumber(num)}`;
+}
+
 function fmtDelta(pct) {
   if (pct === null || pct === undefined) return '';
   const sign = pct >= 0 ? '+' : '';
@@ -294,6 +364,16 @@ function fmtRecencyDays(days) {
   if (days <= 60) return `${days}d ago`;
   if (days < 365) return `${Math.round(days / 30)}mo ago`;
   return `${(days / 365).toFixed(1)}yr ago`;
+}
+
+function fmtExpiryDays(days) {
+  if (days === null || days === undefined) return '—';
+  if (days < 0) return 'Expired';
+  if (days === 0) return 'Today';
+  if (days === 1) return `in 1d`;
+  if (days <= 60) return `in ${days}d`;
+  if (days < 365) return `in ${Math.round(days / 30)}mo`;
+  return `in ${(days / 365).toFixed(1)}yr`;
 }
 
 function recencyColor(days) {
@@ -422,11 +502,12 @@ const SUGGESTED_QUESTIONS = [
 function buildSystemPrompt(roster, snapshot, briefing) {
   const artistLines = snapshot.artists.map(a => {
     const kpiById = Object.fromEntries(a.kpis.map(k => [k.kpi_id, k]));
-    const summaryKpis = KPI_REGISTRY.map(meta => {
-      const kpi = kpiById[meta.id];
-      if (!kpi) return `  ${meta.name}: —`;
-      return `  ${formatKpiPromptValue(kpi)}`;
-    });
+    const summaryKpis = a.kpis
+      .filter(kpi => {
+        const meta = getKpiMeta(kpi.kpi_id);
+        return meta.is_summary || !!kpi.alert;
+      })
+      .map(kpi => `  ${formatKpiPromptValue(kpi)}`);
     const alerts = a.kpis.filter(k => k.alert).map(k => k.alert).join(', ');
 
     return [

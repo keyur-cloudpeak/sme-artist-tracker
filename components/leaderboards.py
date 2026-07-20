@@ -93,7 +93,7 @@ function renderKpiLeaderboard(kpiId, artists, limit) {
 
   let asc = meta.invertSort;
   const accentColor = meta.color ?? '#999';
-  const showDelta = ![6, 7, 9, 10, 13, 15].includes(kpiId);
+  const showDelta = ![6, 7, 9, 10, 13, 16].includes(kpiId);
 
   const wrap = document.createElement('div');
   wrap.className = 'lb-card';

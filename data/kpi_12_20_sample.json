@@ -1,0 +1,83 @@
+{
+  "snapshot_date": "2026-07-09",
+  "kpis": [
+    12,13,14,15,16,17,18,19,20
+  ],
+  "artists": [
+    {
+      "artist_slug": "alejandro-sanz",
+      "artist_name": "Alejandro Sanz",
+      "kpis": [
+        { "kpi_id": 12, "kpi_name": "Quarterly Revenue", "unit": "USD", "higher_is_better": true, "current_value": 1450000, "previous_value": 1320000, "delta_absolute": 130000, "delta_percent": 9.85, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 13, "kpi_name": "Contract Expiry", "unit": "days", "higher_is_better": false, "current_value": 540, "previous_value": 585, "delta_absolute": -45, "delta_percent": -7.69, "trend": "up", "alert": null, "benchmark_tier": "Secure" },
+        { "kpi_id": 14, "kpi_name": "Touring Revenue", "unit": "USD", "higher_is_better": true, "current_value": 280000, "previous_value": 245000, "delta_absolute": 35000, "delta_percent": 14.29, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 15, "kpi_name": "Merchandise Revenue", "unit": "USD", "higher_is_better": true, "current_value": 42000, "previous_value": 38500, "delta_absolute": 3500, "delta_percent": 9.09, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 16, "kpi_name": "Sync Placements", "unit": "placements", "higher_is_better": true, "current_value": 9, "previous_value": 7, "delta_absolute": 2, "delta_percent": 28.57, "trend": "up", "alert": null, "benchmark_tier": "Trending" },
+        { "kpi_id": 17, "kpi_name": "Brand Sponsorship Value", "unit": "USD", "higher_is_better": true, "current_value": 360000, "previous_value": 320000, "delta_absolute": 40000, "delta_percent": 12.5, "trend": "up", "alert": null, "benchmark_tier": "Premium" },
+        { "kpi_id": 18, "kpi_name": "Music Video Completion Rate", "unit": "%", "higher_is_better": true, "current_value": 84.0, "previous_value": 81.0, "delta_absolute": 3.0, "delta_percent": 3.7, "trend": "up", "alert": null, "benchmark_tier": "High" },
+        { "kpi_id": 19, "kpi_name": "Fan Club Subscribers", "unit": "subscribers", "higher_is_better": true, "current_value": 18400, "previous_value": 17600, "delta_absolute": 800, "delta_percent": 4.55, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 20, "kpi_name": "Catalog Streaming %", "unit": "%", "higher_is_better": true, "current_value": 72.0, "previous_value": 68.0, "delta_absolute": 4.0, "delta_percent": 5.88, "trend": "up", "alert": null, "benchmark_tier": "Healthy" }
+      ]
+    },
+    {
+      "artist_slug": "beele",
+      "artist_name": "Beéle",
+      "kpis": [
+        { "kpi_id": 12, "kpi_name": "Quarterly Revenue", "unit": "USD", "higher_is_better": true, "current_value": 920000, "previous_value": 860000, "delta_absolute": 60000, "delta_percent": 6.98, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 13, "kpi_name": "Contract Expiry", "unit": "days", "higher_is_better": false, "current_value": 480, "previous_value": 510, "delta_absolute": -30, "delta_percent": -5.88, "trend": "up", "alert": null, "benchmark_tier": "At risk" },
+        { "kpi_id": 14, "kpi_name": "Touring Revenue", "unit": "USD", "higher_is_better": true, "current_value": 160000, "previous_value": 140000, "delta_absolute": 20000, "delta_percent": 14.29, "trend": "up", "alert": null, "benchmark_tier": "Moderate" },
+        { "kpi_id": 15, "kpi_name": "Merchandise Revenue", "unit": "USD", "higher_is_better": true, "current_value": 24000, "previous_value": 21000, "delta_absolute": 3000, "delta_percent": 14.29, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 16, "kpi_name": "Sync Placements", "unit": "placements", "higher_is_better": true, "current_value": 6, "previous_value": 5, "delta_absolute": 1, "delta_percent": 20.0, "trend": "up", "alert": null, "benchmark_tier": "Moderate" },
+        { "kpi_id": 17, "kpi_name": "Brand Sponsorship Value", "unit": "USD", "higher_is_better": true, "current_value": 120000, "previous_value": 100000, "delta_absolute": 20000, "delta_percent": 20.0, "trend": "up", "alert": null, "benchmark_tier": "Emerging" },
+        { "kpi_id": 18, "kpi_name": "Music Video Completion Rate", "unit": "%", "higher_is_better": true, "current_value": 78.0, "previous_value": 76.5, "delta_absolute": 1.5, "delta_percent": 1.96, "trend": "up", "alert": null, "benchmark_tier": "Average" },
+        { "kpi_id": 19, "kpi_name": "Fan Club Subscribers", "unit": "subscribers", "higher_is_better": true, "current_value": 9200, "previous_value": 8800, "delta_absolute": 400, "delta_percent": 4.55, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 20, "kpi_name": "Catalog Streaming %", "unit": "%", "higher_is_better": true, "current_value": 61.0, "previous_value": 59.0, "delta_absolute": 2.0, "delta_percent": 3.39, "trend": "up", "alert": null, "benchmark_tier": "Mixed" }
+      ]
+    },
+    {
+      "artist_slug": "shakira",
+      "artist_name": "Shakira",
+      "kpis": [
+        { "kpi_id": 12, "kpi_name": "Quarterly Revenue", "unit": "USD", "higher_is_better": true, "current_value": 2240000, "previous_value": 2100000, "delta_absolute": 140000, "delta_percent": 6.67, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 13, "kpi_name": "Contract Expiry", "unit": "days", "higher_is_better": false, "current_value": 300, "previous_value": 330, "delta_absolute": -30, "delta_percent": -9.09, "trend": "up", "alert": null, "benchmark_tier": "Secure" },
+        { "kpi_id": 14, "kpi_name": "Touring Revenue", "unit": "USD", "higher_is_better": true, "current_value": 480000, "previous_value": 420000, "delta_absolute": 60000, "delta_percent": 14.29, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 15, "kpi_name": "Merchandise Revenue", "unit": "USD", "higher_is_better": true, "current_value": 78000, "previous_value": 72000, "delta_absolute": 6000, "delta_percent": 8.33, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 16, "kpi_name": "Sync Placements", "unit": "placements", "higher_is_better": true, "current_value": 14, "previous_value": 12, "delta_absolute": 2, "delta_percent": 16.67, "trend": "up", "alert": null, "benchmark_tier": "Trending" },
+        { "kpi_id": 17, "kpi_name": "Brand Sponsorship Value", "unit": "USD", "higher_is_better": true, "current_value": 860000, "previous_value": 800000, "delta_absolute": 60000, "delta_percent": 7.5, "trend": "up", "alert": null, "benchmark_tier": "Premium" },
+        { "kpi_id": 18, "kpi_name": "Music Video Completion Rate", "unit": "%", "higher_is_better": true, "current_value": 89.0, "previous_value": 87.5, "delta_absolute": 1.5, "delta_percent": 1.71, "trend": "up", "alert": null, "benchmark_tier": "High" },
+        { "kpi_id": 19, "kpi_name": "Fan Club Subscribers", "unit": "subscribers", "higher_is_better": true, "current_value": 41200, "previous_value": 40000, "delta_absolute": 1200, "delta_percent": 3.0, "trend": "up", "alert": null, "benchmark_tier": "Strong" },
+        { "kpi_id": 20, "kpi_name": "Catalog Streaming %", "unit": "%", "higher_is_better": true, "current_value": 68.0, "previous_value": 65.0, "delta_absolute": 3.0, "delta_percent": 4.62, "trend": "up", "alert": null, "benchmark_tier": "Healthy" }
+      ]
+    },
+    {
+      "artist_slug": "dennis",
+      "artist_name": "DENNIS",
+      "kpis": [
+        { "kpi_id": 12, "kpi_name": "Quarterly Revenue", "unit": "USD", "higher_is_better": true, "current_value": 640000, "previous_value": 590000, "delta_absolute": 50000, "delta_percent": 8.47, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 13, "kpi_name": "Contract Expiry", "unit": "days", "higher_is_better": false, "current_value": 260, "previous_value": 290, "delta_absolute": -30, "delta_percent": -10.34, "trend": "up", "alert": null, "benchmark_tier": "Secure" },
+        { "kpi_id": 14, "kpi_name": "Touring Revenue", "unit": "USD", "higher_is_better": true, "current_value": 112000, "previous_value": 98000, "delta_absolute": 14000, "delta_percent": 14.29, "trend": "up", "alert": null, "benchmark_tier": "Moderate" },
+        { "kpi_id": 15, "kpi_name": "Merchandise Revenue", "unit": "USD", "higher_is_better": true, "current_value": 14000, "previous_value": 12000, "delta_absolute": 2000, "delta_percent": 16.67, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 16, "kpi_name": "Sync Placements", "unit": "placements", "higher_is_better": true, "current_value": 4, "previous_value": 3, "delta_absolute": 1, "delta_percent": 33.33, "trend": "up", "alert": null, "benchmark_tier": "Moderate" },
+        { "kpi_id": 17, "kpi_name": "Brand Sponsorship Value", "unit": "USD", "higher_is_better": true, "current_value": 72000, "previous_value": 65000, "delta_absolute": 7000, "delta_percent": 10.77, "trend": "up", "alert": null, "benchmark_tier": "Emerging" },
+        { "kpi_id": 18, "kpi_name": "Music Video Completion Rate", "unit": "%", "higher_is_better": true, "current_value": 71.0, "previous_value": 70.0, "delta_absolute": 1.0, "delta_percent": 1.43, "trend": "up", "alert": null, "benchmark_tier": "Average" },
+        { "kpi_id": 19, "kpi_name": "Fan Club Subscribers", "unit": "subscribers", "higher_is_better": true, "current_value": 4200, "previous_value": 4000, "delta_absolute": 200, "delta_percent": 5.0, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 20, "kpi_name": "Catalog Streaming %", "unit": "%", "higher_is_better": true, "current_value": 55.0, "previous_value": 53.0, "delta_absolute": 2.0, "delta_percent": 3.77, "trend": "up", "alert": null, "benchmark_tier": "Mixed" }
+      ]
+    },
+    {
+      "artist_slug": "kenia-os",
+      "artist_name": "Kenia OS",
+      "kpis": [
+        { "kpi_id": 12, "kpi_name": "Quarterly Revenue", "unit": "USD", "higher_is_better": true, "current_value": 310000, "previous_value": 280000, "delta_absolute": 30000, "delta_percent": 10.71, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 13, "kpi_name": "Contract Expiry", "unit": "days", "higher_is_better": false, "current_value": 420, "previous_value": 450, "delta_absolute": -30, "delta_percent": -6.67, "trend": "up", "alert": null, "benchmark_tier": "At risk" },
+        { "kpi_id": 14, "kpi_name": "Touring Revenue", "unit": "USD", "higher_is_better": true, "current_value": 68000, "previous_value": 59000, "delta_absolute": 9000, "delta_percent": 15.25, "trend": "up", "alert": null, "benchmark_tier": "Moderate" },
+        { "kpi_id": 15, "kpi_name": "Merchandise Revenue", "unit": "USD", "higher_is_better": true, "current_value": 12500, "previous_value": 11000, "delta_absolute": 1500, "delta_percent": 13.64, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 16, "kpi_name": "Sync Placements", "unit": "placements", "higher_is_better": true, "current_value": 3, "previous_value": 2, "delta_absolute": 1, "delta_percent": 50.0, "trend": "up", "alert": null, "benchmark_tier": "Moderate" },
+        { "kpi_id": 17, "kpi_name": "Brand Sponsorship Value", "unit": "USD", "higher_is_better": true, "current_value": 42000, "previous_value": 36000, "delta_absolute": 6000, "delta_percent": 16.67, "trend": "up", "alert": null, "benchmark_tier": "Emerging" },
+        { "kpi_id": 18, "kpi_name": "Music Video Completion Rate", "unit": "%", "higher_is_better": true, "current_value": 76.0, "previous_value": 74.0, "delta_absolute": 2.0, "delta_percent": 2.7, "trend": "up", "alert": null, "benchmark_tier": "Average" },
+        { "kpi_id": 19, "kpi_name": "Fan Club Subscribers", "unit": "subscribers", "higher_is_better": true, "current_value": 5200, "previous_value": 4800, "delta_absolute": 400, "delta_percent": 8.33, "trend": "up", "alert": null, "benchmark_tier": "Developing" },
+        { "kpi_id": 20, "kpi_name": "Catalog Streaming %", "unit": "%", "higher_is_better": true, "current_value": 49.0, "previous_value": 46.0, "delta_absolute": 3.0, "delta_percent": 6.52, "trend": "up", "alert": null, "benchmark_tier": "Mixed" }
+      ]
+    }
+  ]
+}

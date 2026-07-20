@@ -1581,6 +1581,60 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2000000,
+          "previous_value": 2000000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 68.3,
+          "previous_value": 67.9,
+          "delta_absolute": 0.4,
+          "delta_percent": 0.59,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "High"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 50000,
+          "previous_value": 49000,
+          "delta_absolute": 1000,
+          "delta_percent": 2.04,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Large"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 90.1,
+          "previous_value": 90.0,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Deep Catalog"
+        }
       ]
     },
     {
@@ -3384,6 +3438,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 13714060.0,
+          "previous_value": 13748668.0,
+          "delta_absolute": -34608.0,
+          "delta_percent": -0.25,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2880000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 10834060
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 900000,
+          "previous_value": 850000,
+          "delta_absolute": 50000,
+          "delta_percent": 5.88,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 250,
+          "previous_value": 251,
+          "delta_absolute": -1,
+          "delta_percent": -0.4,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2000000,
+          "previous_value": 1800000,
+          "delta_absolute": 200000,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 280000,
+          "delta_absolute": 20000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 1,
+          "previous_value": 1,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 600000,
+          "previous_value": 600000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Growing"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 52.3,
+          "previous_value": 52.1,
+          "delta_absolute": 0.2,
+          "delta_percent": 0.38,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Good"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 18000,
+          "previous_value": 17500,
+          "delta_absolute": 500,
+          "delta_percent": 2.86,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Active"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 55.6,
+          "previous_value": 55.2,
+          "delta_absolute": 0.4,
+          "delta_percent": 0.72,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Mature Catalog"
+        }
       ]
     },
     {
@@ -3609,6 +3798,141 @@
               "release_date": "2023-12-15"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 7441456.0,
+          "previous_value": 7469639.0,
+          "delta_absolute": -28183.0,
+          "delta_percent": -0.38,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 1520000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 5921456
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 350000,
+          "previous_value": 360000,
+          "delta_absolute": -10000,
+          "delta_percent": -2.78,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 700,
+          "previous_value": 701,
+          "delta_absolute": -1,
+          "delta_percent": -0.14,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 900000,
+          "previous_value": 900000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 80000,
+          "previous_value": 85000,
+          "delta_absolute": -5000,
+          "delta_percent": -5.88,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 2,
+          "previous_value": 2,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 300000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Legacy"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 42.5,
+          "previous_value": 42.4,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.24,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Low"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 2500,
+          "previous_value": 2500,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Legacy"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 94.2,
+          "previous_value": 94.1,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Deep Catalog"
         }
       ]
     },
@@ -3836,6 +4160,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 14236120.0,
+          "previous_value": 14234099.0,
+          "delta_absolute": 2021.0,
+          "delta_percent": 0.01,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 5240000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 8996120
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 600000,
+          "previous_value": 580000,
+          "delta_absolute": 20000,
+          "delta_percent": 3.45,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 420,
+          "previous_value": 421,
+          "delta_absolute": -1,
+          "delta_percent": -0.24,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1800000,
+          "previous_value": 1700000,
+          "delta_absolute": 100000,
+          "delta_percent": 5.88,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 150000,
+          "previous_value": 140000,
+          "delta_absolute": 10000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 400000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Growing"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 60.3,
+          "previous_value": 60.1,
+          "delta_absolute": 0.2,
+          "delta_percent": 0.33,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "High"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 8000,
+          "previous_value": 7800,
+          "delta_absolute": 200,
+          "delta_percent": 2.56,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Active"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 65.7,
+          "previous_value": 65.5,
+          "delta_absolute": 0.2,
+          "delta_percent": 0.31,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Mature Catalog"
+        }
       ]
     },
     {
@@ -4061,6 +4520,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 22250.0,
+          "previous_value": 22231.0,
+          "delta_absolute": 19.0,
+          "delta_percent": 0.09,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "emerging",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 22250
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 50000,
+          "previous_value": 45000,
+          "delta_absolute": 5000,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 300,
+          "previous_value": 301,
+          "delta_absolute": -1,
+          "delta_percent": -0.33,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 25000,
+          "previous_value": 20000,
+          "delta_absolute": 5000,
+          "delta_percent": 25,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 10000,
+          "previous_value": 8000,
+          "delta_absolute": 2000,
+          "delta_percent": 25,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 25000,
+          "previous_value": 25000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Micro-Influencer"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 40.1,
+          "previous_value": 39.8,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.75,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Low"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 100,
+          "previous_value": 90,
+          "delta_absolute": 10,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "New"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 10.5,
+          "previous_value": 10.2,
+          "delta_absolute": 0.3,
+          "delta_percent": 2.94,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "New Catalog"
+        }
       ]
     },
     {
@@ -4284,6 +4878,141 @@
               "release_date": "2019-06-27"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 38535849.0,
+          "previous_value": 38330478.0,
+          "delta_absolute": 205371.0,
+          "delta_percent": 0.54,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 6270000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 32265849
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2200000,
+          "previous_value": 2100000,
+          "delta_absolute": 100000,
+          "delta_percent": 4.76,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 400,
+          "previous_value": 401,
+          "delta_absolute": -1,
+          "delta_percent": -0.25,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 6000000,
+          "previous_value": 5500000,
+          "delta_absolute": 500000,
+          "delta_percent": 9.09,
+          "trend": "up",
+          "alert": "Las Vegas Residency"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 750000,
+          "previous_value": 720000,
+          "delta_absolute": 30000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 8,
+          "previous_value": 6,
+          "delta_absolute": 2,
+          "delta_percent": 33.33,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 5000000,
+          "previous_value": 4800000,
+          "delta_absolute": 200000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Elite"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 58.2,
+          "previous_value": 57.9,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.52,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Good"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 100000,
+          "previous_value": 98000,
+          "delta_absolute": 2000,
+          "delta_percent": 2.04,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Superstar"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 70.1,
+          "previous_value": 70.0,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.14,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Legacy Act"
         }
       ]
     },
@@ -4511,6 +5240,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 20901342.0,
+          "previous_value": 20993138.0,
+          "delta_absolute": -91796.0,
+          "delta_percent": -0.44,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 6240000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 14661342
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1800000,
+          "previous_value": 1750000,
+          "delta_absolute": 50000,
+          "delta_percent": 2.86,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 850,
+          "previous_value": 851,
+          "delta_absolute": -1,
+          "delta_percent": -0.12,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 5000000,
+          "previous_value": 4800000,
+          "delta_absolute": 200000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 410000,
+          "delta_absolute": -10000,
+          "delta_percent": -2.44,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 3,
+          "previous_value": 2,
+          "delta_absolute": 1,
+          "delta_percent": 50,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1200000,
+          "previous_value": 1200000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Major"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 62.1,
+          "previous_value": 61.8,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.49,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "High"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 40000,
+          "previous_value": 39000,
+          "delta_absolute": 1000,
+          "delta_percent": 2.56,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Large"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 82.4,
+          "previous_value": 82.1,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.37,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Legacy Act"
+        }
       ]
     },
     {
@@ -4736,6 +5600,141 @@
               "release_date": "2014-02-25"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 2898825.0,
+          "previous_value": 2922944.0,
+          "delta_absolute": -24119.0,
+          "delta_percent": -0.83,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 480000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 2418825
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 150000,
+          "previous_value": 160000,
+          "delta_absolute": -10000,
+          "delta_percent": -6.25,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 500,
+          "previous_value": 501,
+          "delta_absolute": -1,
+          "delta_percent": -0.2,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 300000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 45000,
+          "previous_value": 42000,
+          "delta_absolute": 3000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 50000,
+          "previous_value": 50000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Niche"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 75.0,
+          "previous_value": 74.9,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.13,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Very High"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 500,
+          "previous_value": 500,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Niche"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 95.1,
+          "previous_value": 95.0,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Deep Catalog"
         }
       ]
     },
@@ -4963,6 +5962,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 24450195.0,
+          "previous_value": 24479453.0,
+          "delta_absolute": -29258.0,
+          "delta_percent": -0.12,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 6280000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18170195
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1500000,
+          "previous_value": 1450000,
+          "delta_absolute": 50000,
+          "delta_percent": 3.45,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 320,
+          "previous_value": 321,
+          "delta_absolute": -1,
+          "delta_percent": -0.31,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 4000000,
+          "previous_value": 3800000,
+          "delta_absolute": 200000,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 200000,
+          "previous_value": 190000,
+          "delta_absolute": 10000,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 1,
+          "previous_value": 0,
+          "delta_absolute": 1,
+          "delta_percent": null,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1000000,
+          "previous_value": 900000,
+          "delta_absolute": 100000,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Major"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 48.2,
+          "previous_value": 48.0,
+          "delta_absolute": 0.2,
+          "delta_percent": 0.42,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Average"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 30000,
+          "previous_value": 29000,
+          "delta_absolute": 1000,
+          "delta_percent": 3.45,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Established"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 80.5,
+          "previous_value": 80.2,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.37,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Legacy Act"
+        }
       ]
     },
     {
@@ -5189,6 +6323,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 15997808.0,
+          "previous_value": 16087643.0,
+          "delta_absolute": -89835.0,
+          "delta_percent": -0.56,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 4460000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 11537808
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 950000,
+          "previous_value": 920000,
+          "delta_absolute": 30000,
+          "delta_percent": 3.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 600,
+          "previous_value": 601,
+          "delta_absolute": -1,
+          "delta_percent": -0.17,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1500000,
+          "previous_value": 1400000,
+          "delta_absolute": 100000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 180000,
+          "previous_value": 185000,
+          "delta_absolute": -5000,
+          "delta_percent": -2.7,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 800000,
+          "previous_value": 800000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Stable"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 50.1,
+          "previous_value": 49.8,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.6,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Average"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 12000,
+          "previous_value": 12000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Established"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 88.0,
+          "previous_value": 87.9,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Deep Catalog"
+        }
       ]
     },
     {
@@ -5413,6 +6682,141 @@
               "release_date": "2022-09-02"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 5558906.0,
+          "previous_value": 5581519.0,
+          "delta_absolute": -22613.0,
+          "delta_percent": -0.41,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 1210000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 4348906
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 410000,
+          "delta_absolute": -10000,
+          "delta_percent": -2.44,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 9999,
+          "previous_value": 9999,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": "Lifetime"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 800000,
+          "previous_value": 800000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 20000,
+          "previous_value": 20000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 5,
+          "previous_value": 5,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 250000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Legacy"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 35.2,
+          "previous_value": 35.1,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.28,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Low"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 1000,
+          "previous_value": 1000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Legacy"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 92.7,
+          "previous_value": 92.6,
+          "delta_absolute": 0.1,
+          "delta_percent": 0.11,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Deep Catalog"
         }
       ]
     },
@@ -5639,6 +7043,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 4613870.0,
+          "previous_value": 4650793.0,
+          "delta_absolute": -36923.0,
+          "delta_percent": -0.79,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 823000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 3790870
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 220000,
+          "delta_absolute": 30000,
+          "delta_percent": 13.64,
+          "trend": "up",
+          "alert": "Revenue Spike"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 180,
+          "previous_value": 181,
+          "delta_absolute": -1,
+          "delta_percent": -0.55,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 350000,
+          "delta_absolute": 50000,
+          "delta_percent": 14.29,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 50000,
+          "previous_value": 48000,
+          "delta_absolute": 2000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 1,
+          "previous_value": 1,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 100000,
+          "previous_value": 100000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Emerging"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 55.8,
+          "previous_value": 56.1,
+          "delta_absolute": -0.3,
+          "delta_percent": -0.53,
+          "trend": "down",
+          "alert": null,
+          "benchmark_tier": "Good"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 2000,
+          "previous_value": 1900,
+          "delta_absolute": 100,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Growing"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 25.0,
+          "previous_value": 24.5,
+          "delta_absolute": 0.5,
+          "delta_percent": 2.04,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "New Catalog"
+        }
       ]
     },
     {
@@ -5864,6 +7403,141 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 12986276.0,
+          "previous_value": 13017407.0,
+          "delta_absolute": -31131.0,
+          "delta_percent": -0.24,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2400000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 10586276
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 750000,
+          "previous_value": 780000,
+          "delta_absolute": -30000,
+          "delta_percent": -3.85,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 800,
+          "previous_value": 801,
+          "delta_absolute": -1,
+          "delta_percent": -0.12,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2800000,
+          "previous_value": 2900000,
+          "delta_absolute": -100000,
+          "delta_percent": -3.45,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 280000,
+          "delta_absolute": 20000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 4,
+          "previous_value": 4,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 500000,
+          "previous_value": 500000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Stable"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 72.1,
+          "previous_value": 71.8,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.42,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Very High"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 5000,
+          "previous_value": 5000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Niche"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 85.3,
+          "previous_value": 85.1,
+          "delta_absolute": 0.2,
+          "delta_percent": 0.24,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong Catalog"
+        }
       ]
     },
     {
@@ -6088,6 +7762,141 @@
               "release_date": "2022-03-17"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 35662005.0,
+          "previous_value": 35770116.0,
+          "delta_absolute": -108111.0,
+          "delta_percent": -0.3,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2540000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 33122005
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 850000,
+          "previous_value": 820000,
+          "delta_absolute": 30000,
+          "delta_percent": 3.66,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 280,
+          "previous_value": 281,
+          "delta_absolute": -1,
+          "delta_percent": -0.36,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1200000,
+          "previous_value": 1100000,
+          "delta_absolute": 100000,
+          "delta_percent": 9.09,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 120000,
+          "previous_value": 115000,
+          "delta_absolute": 5000,
+          "delta_percent": 4.35,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 750000,
+          "previous_value": 750000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "Growing"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 65.2,
+          "previous_value": 64.1,
+          "delta_absolute": 1.1,
+          "delta_percent": 1.72,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "High"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 15000,
+          "previous_value": 14800,
+          "delta_absolute": 200,
+          "delta_percent": 1.35,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Active"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 40.1,
+          "previous_value": 40.5,
+          "delta_absolute": -0.4,
+          "delta_percent": -0.99,
+          "trend": "down",
+          "alert": null,
+          "benchmark_tier": "Recent Catalog"
         }
       ]
     },
@@ -6315,6 +8124,142 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 18385567.0,
+          "previous_value": 18503680.0,
+          "delta_absolute": -118113.0,
+          "delta_percent": -0.64,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18385567
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1250000,
+          "previous_value": 1200000,
+          "delta_absolute": 50000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 450,
+          "previous_value": 451,
+          "delta_absolute": -1,
+          "delta_percent": -0.22,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 3500000,
+          "previous_value": 3200000,
+          "delta_absolute": 300000,
+          "delta_percent": 9.38,
+          "trend": "up",
+          "alert": "Major Tour"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 255000,
+          "delta_absolute": -5000,
+          "delta_percent": -1.96,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 2,
+          "previous_value": 1,
+          "delta_absolute": 1,
+          "delta_percent": 100,
+          "trend": "up",
+          "alert": "New Sync"
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1500000,
+          "previous_value": 1400000,
+          "delta_absolute": 100000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 45.5,
+          "previous_value": 45.2,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.66,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Average"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 25000,
+          "previous_value": 24500,
+          "delta_absolute": 500,
+          "delta_percent": 2.04,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Established"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 75.2,
+          "previous_value": 74.8,
+          "delta_absolute": 0.4,
+          "delta_percent": 0.53,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Legacy Act"
+        }
       ]
     },
     {
@@ -6541,6 +8486,142 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 18385567.0,
+          "previous_value": 18503680.0,
+          "delta_absolute": -118113.0,
+          "delta_percent": -0.64,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18385567
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1250000,
+          "previous_value": 1200000,
+          "delta_absolute": 50000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 450,
+          "previous_value": 451,
+          "delta_absolute": -1,
+          "delta_percent": -0.22,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 3500000,
+          "previous_value": 3200000,
+          "delta_absolute": 300000,
+          "delta_percent": 9.38,
+          "trend": "up",
+          "alert": "Major Tour"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 255000,
+          "delta_absolute": -5000,
+          "delta_percent": -1.96,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 2,
+          "previous_value": 1,
+          "delta_absolute": 1,
+          "delta_percent": 100,
+          "trend": "up",
+          "alert": "New Sync"
+        },
+        {
+          "kpi_id": 17,
+          "kpi_name": "Brand Sponsorship Value",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1500000,
+          "previous_value": 1400000,
+          "delta_absolute": 100000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 18,
+          "kpi_name": "Music Video Completion Rate",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 45.5,
+          "previous_value": 45.2,
+          "delta_absolute": 0.3,
+          "delta_percent": 0.66,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Average"
+        },
+        {
+          "kpi_id": 19,
+          "kpi_name": "Fan Club Subscribers",
+          "unit": "members",
+          "higher_is_better": true,
+          "current_value": 25000,
+          "previous_value": 24500,
+          "delta_absolute": 500,
+          "delta_percent": 2.04,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Established"
+        },
+        {
+          "kpi_id": 20,
+          "kpi_name": "Catalog Streaming %",
+          "unit": "%",
+          "higher_is_better": true,
+          "current_value": 75.2,
+          "previous_value": 74.8,
+          "delta_absolute": 0.4,
+          "delta_percent": 0.53,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Legacy Act"
+        }
       ]
     },
     {
@@ -6766,6 +8847,89 @@
               "release_date": "2015-02-10"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 12039767.0,
+          "previous_value": 12055905.0,
+          "delta_absolute": -16138.0,
+          "delta_percent": -0.13,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 3450000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 8589767
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 500000,
+          "previous_value": 520000,
+          "delta_absolute": -20000,
+          "delta_percent": -3.85,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 380,
+          "previous_value": 381,
+          "delta_absolute": -1,
+          "delta_percent": -0.26,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1000000,
+          "previous_value": 950000,
+          "delta_absolute": 50000,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 100000,
+          "previous_value": 90000,
+          "delta_absolute": 10000,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
         }
       ]
     },
@@ -6994,6 +9158,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 13714060.0,
+          "previous_value": 13748668.0,
+          "delta_absolute": -34608.0,
+          "delta_percent": -0.25,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2880000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 10834060
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 900000,
+          "previous_value": 850000,
+          "delta_absolute": 50000,
+          "delta_percent": 5.88,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 250,
+          "previous_value": 251,
+          "delta_absolute": -1,
+          "delta_percent": -0.4,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2000000,
+          "previous_value": 1800000,
+          "delta_absolute": 200000,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 280000,
+          "delta_absolute": 20000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 1,
+          "previous_value": 1,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        }
       ]
     },
     {
@@ -7219,6 +9466,89 @@
               "release_date": "2022-01-05"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 7441456.0,
+          "previous_value": 7469639.0,
+          "delta_absolute": -28183.0,
+          "delta_percent": -0.38,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 1520000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 5921456
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 350000,
+          "previous_value": 360000,
+          "delta_absolute": -10000,
+          "delta_percent": -2.78,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 700,
+          "previous_value": 701,
+          "delta_absolute": -1,
+          "delta_percent": -0.14,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 900000,
+          "previous_value": 900000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 80000,
+          "previous_value": 85000,
+          "delta_absolute": -5000,
+          "delta_percent": -5.88,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 2,
+          "previous_value": 2,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
         }
       ]
     },
@@ -7446,6 +9776,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 14236120.0,
+          "previous_value": 14234099.0,
+          "delta_absolute": 2021.0,
+          "delta_percent": 0.01,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 5240000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 8996120
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 600000,
+          "previous_value": 580000,
+          "delta_absolute": 20000,
+          "delta_percent": 3.45,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 420,
+          "previous_value": 421,
+          "delta_absolute": -1,
+          "delta_percent": -0.24,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1800000,
+          "previous_value": 1700000,
+          "delta_absolute": 100000,
+          "delta_percent": 5.88,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 150000,
+          "previous_value": 140000,
+          "delta_absolute": 10000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        }
       ]
     },
     {
@@ -7671,6 +10084,89 @@
               "release_date": "2023-03-24"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 22250.0,
+          "previous_value": 22231.0,
+          "delta_absolute": 19.0,
+          "delta_percent": 0.09,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "emerging",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 22250
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 50000,
+          "previous_value": 45000,
+          "delta_absolute": 5000,
+          "delta_percent": 11.11,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 300,
+          "previous_value": 301,
+          "delta_absolute": -1,
+          "delta_percent": -0.33,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 25000,
+          "previous_value": 20000,
+          "delta_absolute": 5000,
+          "delta_percent": 25,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 10000,
+          "previous_value": 8000,
+          "delta_absolute": 2000,
+          "delta_percent": 25,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
         }
       ]
     },
@@ -7898,6 +10394,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 38535849.0,
+          "previous_value": 38330478.0,
+          "delta_absolute": 205371.0,
+          "delta_percent": 0.54,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 6270000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 32265849
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2200000,
+          "previous_value": 2100000,
+          "delta_absolute": 100000,
+          "delta_percent": 4.76,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 400,
+          "previous_value": 401,
+          "delta_absolute": -1,
+          "delta_percent": -0.25,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 6000000,
+          "previous_value": 5500000,
+          "delta_absolute": 500000,
+          "delta_percent": 9.09,
+          "trend": "up",
+          "alert": "Las Vegas Residency"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 750000,
+          "previous_value": 720000,
+          "delta_absolute": 30000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 8,
+          "previous_value": 6,
+          "delta_absolute": 2,
+          "delta_percent": 33.33,
+          "trend": "up",
+          "alert": null
+        }
       ]
     },
     {
@@ -8123,6 +10702,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 20901342.0,
+          "previous_value": 20993138.0,
+          "delta_absolute": -91796.0,
+          "delta_percent": -0.44,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 6240000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 14661342
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1800000,
+          "previous_value": 1750000,
+          "delta_absolute": 50000,
+          "delta_percent": 2.86,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 850,
+          "previous_value": 851,
+          "delta_absolute": -1,
+          "delta_percent": -0.12,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 5000000,
+          "previous_value": 4800000,
+          "delta_absolute": 200000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 410000,
+          "delta_absolute": -10000,
+          "delta_percent": -2.44,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 3,
+          "previous_value": 2,
+          "delta_absolute": 1,
+          "delta_percent": 50,
+          "trend": "up",
+          "alert": null
+        }
       ]
     },
     {
@@ -8347,6 +11009,89 @@
               "release_date": "2015-02-10"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 2898825.0,
+          "previous_value": 2922944.0,
+          "delta_absolute": -24119.0,
+          "delta_percent": -0.83,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 480000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 2418825
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 150000,
+          "previous_value": 160000,
+          "delta_absolute": -10000,
+          "delta_percent": -6.25,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 500,
+          "previous_value": 501,
+          "delta_absolute": -1,
+          "delta_percent": -0.2,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 300000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 45000,
+          "previous_value": 42000,
+          "delta_absolute": 3000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
         }
       ]
     },
@@ -8574,6 +11319,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 24450195.0,
+          "previous_value": 24479453.0,
+          "delta_absolute": -29258.0,
+          "delta_percent": -0.12,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 6280000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18170195
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1500000,
+          "previous_value": 1450000,
+          "delta_absolute": 50000,
+          "delta_percent": 3.45,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 320,
+          "previous_value": 321,
+          "delta_absolute": -1,
+          "delta_percent": -0.31,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 4000000,
+          "previous_value": 3800000,
+          "delta_absolute": 200000,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 200000,
+          "previous_value": 190000,
+          "delta_absolute": 10000,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 1,
+          "previous_value": 0,
+          "delta_absolute": 1,
+          "delta_percent": null,
+          "trend": "up",
+          "alert": null
+        }
       ]
     },
     {
@@ -8798,6 +11626,89 @@
               "release_date": "2011-11-08"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 22426070.0,
+          "previous_value": 22645802.0,
+          "delta_absolute": -219732.0,
+          "delta_percent": -0.97,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2870000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 19556070
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2500000,
+          "previous_value": 2500000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 9999,
+          "previous_value": 9999,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": "Lifetime"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 10000000,
+          "previous_value": 9500000,
+          "delta_absolute": 500000,
+          "delta_percent": 5.26,
+          "trend": "up",
+          "alert": "Residency"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 500000,
+          "previous_value": 500000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 10,
+          "previous_value": 8,
+          "delta_absolute": 2,
+          "delta_percent": 25,
+          "trend": "up",
+          "alert": null
         }
       ]
     },
@@ -9025,6 +11936,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 15997808.0,
+          "previous_value": 16087643.0,
+          "delta_absolute": -89835.0,
+          "delta_percent": -0.56,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 4460000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 11537808
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 950000,
+          "previous_value": 920000,
+          "delta_absolute": 30000,
+          "delta_percent": 3.26,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 600,
+          "previous_value": 601,
+          "delta_absolute": -1,
+          "delta_percent": -0.17,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1500000,
+          "previous_value": 1400000,
+          "delta_absolute": 100000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 180000,
+          "previous_value": 185000,
+          "delta_absolute": -5000,
+          "delta_percent": -2.7,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        }
       ]
     },
     {
@@ -9251,6 +12245,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 5558906.0,
+          "previous_value": 5581519.0,
+          "delta_absolute": -22613.0,
+          "delta_percent": -0.41,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 1210000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 4348906
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 410000,
+          "delta_absolute": -10000,
+          "delta_percent": -2.44,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 9999,
+          "previous_value": 9999,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": "Lifetime"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 800000,
+          "previous_value": 800000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 20000,
+          "previous_value": 20000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 5,
+          "previous_value": 5,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        }
       ]
     },
     {
@@ -9475,6 +12552,89 @@
               "release_date": "2009-11-30"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 4613870.0,
+          "previous_value": 4650793.0,
+          "delta_absolute": -36923.0,
+          "delta_percent": -0.79,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "rising",
+          "components": {
+            "instagram": null,
+            "youtube": 823000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 3790870
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 220000,
+          "delta_absolute": 30000,
+          "delta_percent": 13.64,
+          "trend": "up",
+          "alert": "Revenue Spike"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 180,
+          "previous_value": 181,
+          "delta_absolute": -1,
+          "delta_percent": -0.55,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 400000,
+          "previous_value": 350000,
+          "delta_absolute": 50000,
+          "delta_percent": 14.29,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 50000,
+          "previous_value": 48000,
+          "delta_absolute": 2000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 1,
+          "previous_value": 1,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
         }
       ]
     },
@@ -9702,6 +12862,89 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 12986276.0,
+          "previous_value": 13017407.0,
+          "delta_absolute": -31131.0,
+          "delta_percent": -0.24,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2400000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 10586276
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 750000,
+          "previous_value": 780000,
+          "delta_absolute": -30000,
+          "delta_percent": -3.85,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 800,
+          "previous_value": 801,
+          "delta_absolute": -1,
+          "delta_percent": -0.12,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 2800000,
+          "previous_value": 2900000,
+          "delta_absolute": -100000,
+          "delta_percent": -3.45,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 300000,
+          "previous_value": 280000,
+          "delta_absolute": 20000,
+          "delta_percent": 7.14,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 4,
+          "previous_value": 4,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        }
       ]
     },
     {
@@ -9926,6 +13169,187 @@
               "release_date": "2024-08-22"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 35662005.0,
+          "previous_value": 35770116.0,
+          "delta_absolute": -108111.0,
+          "delta_percent": -0.3,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 2540000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 33122005
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 850000,
+          "previous_value": 820000,
+          "delta_absolute": 30000,
+          "delta_percent": 3.66,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 280,
+          "previous_value": 281,
+          "delta_absolute": -1,
+          "delta_percent": -0.36,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1200000,
+          "previous_value": 1100000,
+          "delta_absolute": 100000,
+          "delta_percent": 9.09,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 120000,
+          "previous_value": 115000,
+          "delta_absolute": 5000,
+          "delta_percent": 4.35,
+          "trend": "up",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        }
+      ]
+    },
+    {
+      "artist_slug": "alejandro-sanz",
+      "artist_name": "Alejandro Sanz",
+      "tier": "major",
+      "country": "ES",
+      "label_status": "non-sony",
+      "status": "active",
+      "priority": "high",
+      "genre_tags": [
+        "pop",
+        "flamenco-pop",
+        "ballad"
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 18385567.0,
+          "previous_value": 18503680.0,
+          "delta_absolute": -118113.0,
+          "delta_percent": -0.64,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18385567
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1250000,
+          "previous_value": 1200000,
+          "delta_absolute": 50000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 450,
+          "previous_value": 451,
+          "delta_absolute": -1.0,
+          "delta_percent": -0.22,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 3500000,
+          "previous_value": 3200000,
+          "delta_absolute": 300000,
+          "delta_percent": 9.38,
+          "trend": "up",
+          "alert": "Major Tour"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 255000,
+          "delta_absolute": -5000,
+          "delta_percent": -1.96,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 2,
+          "previous_value": 1,
+          "delta_absolute": 1,
+          "delta_percent": 100,
+          "trend": "up",
+          "alert": "New Sync"
         }
       ]
     },
@@ -10153,6 +13577,90 @@
             }
           ]
         }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 18385567.0,
+          "previous_value": 18503680.0,
+          "delta_absolute": -118113.0,
+          "delta_percent": -0.64,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": null,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 18385567
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1250000,
+          "previous_value": 1200000,
+          "delta_absolute": 50000,
+          "delta_percent": 4.17,
+          "trend": "up",
+          "alert": null,
+          "benchmark_tier": "Strong"
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 450,
+          "previous_value": 451,
+          "delta_absolute": -1,
+          "delta_percent": -0.22,
+          "trend": "down",
+          "alert": "Renewal Window"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 3500000,
+          "previous_value": 3200000,
+          "delta_absolute": 300000,
+          "delta_percent": 9.38,
+          "trend": "up",
+          "alert": "Major Tour"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 250000,
+          "previous_value": 255000,
+          "delta_absolute": -5000,
+          "delta_percent": -1.96,
+          "trend": "down",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 2,
+          "previous_value": 1,
+          "delta_absolute": 1,
+          "delta_percent": 100,
+          "trend": "up",
+          "alert": "New Sync"
+        }
       ]
     },
     {
@@ -10377,6 +13885,89 @@
               "release_date": "1967-01-01"
             }
           ]
+        }
+      ],
+      "kpis": [
+        {
+          "kpi_id": 1,
+          "kpi_name": "Total Social Reach",
+          "unit": "followers",
+          "higher_is_better": true,
+          "current_value": 23841908.0,
+          "previous_value": 23942720.0,
+          "delta_absolute": -100812.0,
+          "delta_percent": -0.42,
+          "trend": "flat",
+          "alert": null,
+          "benchmark_tier": "major",
+          "components": {
+            "instagram": null,
+            "youtube": 9400000,
+            "tiktok": null,
+            "x": null,
+            "facebook": null,
+            "spotify_listeners": 14441908
+          }
+        },
+        {
+          "kpi_id": 12,
+          "kpi_name": "Quarterly Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 1800000,
+          "previous_value": 1800000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 13,
+          "kpi_name": "Contract Expiry",
+          "unit": "days",
+          "higher_is_better": true,
+          "current_value": 9999,
+          "previous_value": 9999,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": "Estate"
+        },
+        {
+          "kpi_id": 14,
+          "kpi_name": "Touring Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 0,
+          "previous_value": 0,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": "Estate"
+        },
+        {
+          "kpi_id": 15,
+          "kpi_name": "Merchandise Revenue",
+          "unit": "usd",
+          "higher_is_better": true,
+          "current_value": 150000,
+          "previous_value": 150000,
+          "delta_absolute": 0,
+          "delta_percent": 0,
+          "trend": "flat",
+          "alert": null
+        },
+        {
+          "kpi_id": 16,
+          "kpi_name": "Sync Placements",
+          "unit": "number",
+          "higher_is_better": true,
+          "current_value": 12,
+          "previous_value": 10,
+          "delta_absolute": 2,
+          "delta_percent": 20,
+          "trend": "up",
+          "alert": null
         }
       ]
     }

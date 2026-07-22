@@ -93,14 +93,6 @@ function renderStoryDetailsModal(item, imageUrl) {
           <div class="story-modal-detail-row"><span class="story-modal-label">Source</span><span>${escapeHtml(item.source)}</span></div>
           <div class="story-modal-detail-row"><span class="story-modal-label">Confidence</span><span>${escapeHtml(item.data_confidence)}</span></div>
         </div>
-        <div class="story-modal-impact">
-          <h3>Impact</h3>
-          ${item.kpi_impact.length ? item.kpi_impact.map(impact => `
-            <div class="story-modal-impact-item">
-              <span class="story-modal-impact-name">${escapeHtml(impact.kpi_name)}</span>
-              <span class="story-modal-impact-delta">${escapeHtml(impact.direction === 'up' ? '▲' : impact.direction === 'down' ? '▼' : '—')} ${impact.delta_absolute != null ? `${impact.delta_absolute > 0 ? '+' : ''}${fmtNumber(impact.delta_absolute)}` : ''}${impact.delta_percent != null ? ` (${impact.delta_percent.toFixed(1)}%)` : ''}</span>
-            </div>`).join('') : '<p class="story-modal-empty">No KPI impact data available.</p>'}
-        </div>
       </div>
     </div>
   `;
@@ -156,7 +148,6 @@ function renderNewsItem(item, imageUrl) {
         <span class="story-artist-line">${escapeHtml(item.artist_name)}<span style="opacity:.4;margin:0 6px">·</span>${escapeHtml(item.artist_tier.toUpperCase())}</span>
       </div>
       <h3 class="story-headline${isTop3 ? ' top3' : ''}">${escapeHtml(item.headline)}</h3>
-      ${kpiRow}
       <p class="story-summary">${escapeHtml(item.summary)}</p>
       <div class="story-footer">
         <span class="story-footer-item">${fmtTimestamp(item.timestamp)}</span>

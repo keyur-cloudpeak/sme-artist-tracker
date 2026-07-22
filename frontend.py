@@ -41,21 +41,35 @@ def get_frontend() -> str:
   const snapshotBySlug = Object.fromEntries(snapshot.artists.map(a => [a.artist_slug, a]));
   const imageBySlug = Object.fromEntries(roster.artists.map(a => [a.slug, a.image_url]));
   const systemPrompt = buildSystemPrompt(roster, snapshot, briefing);
+  const financeSystemPrompt = buildFinanceSystemPrompt(roster, snapshot, briefing);
 
   // ── App state ───────────────────────────────────────────────────
   const state = {
     activeTab: 'stories',
-    selectedQuestion: '',
+    selectedAnalystQuestion: '',
+    selectedFinanceQuestion: '',
     theme: getInitialTheme(),
     roster: { tierFilter: 'all', searchQuery: '' },
   };
   applyTheme(state.theme);
 
-  function setActiveTab(tab) { state.activeTab = tab; renderApp(); }
+  function setActiveTab(tab) {
+    if (state.activeTab !== tab) {
+      state.selectedAnalystQuestion = '';
+      state.selectedFinanceQuestion = '';
+    }
+    state.activeTab = tab;
+    renderApp();
+  }
   function setRosterState(next) { state.roster = next; renderApp(); }
-  function handleQuestionNavigate(question) {
-    state.selectedQuestion = question;
+  function handleAnalystQuestion(question) {
+    state.selectedAnalystQuestion = question;
     state.activeTab = 'analyst';
+    renderApp();
+  }
+  function handleFinanceQuestion(question) {
+    state.selectedFinanceQuestion = question;
+    state.activeTab = 'finance';
     renderApp();
   }
 
@@ -127,11 +141,21 @@ def get_frontend() -> str:
     } else if (state.activeTab === 'leaderboards') {
       bodySlot.appendChild(renderLeaderboards(snapshot));
     } else if (state.activeTab === 'analyst') {
-      const chat = renderChatAgent(roster, snapshot, briefing, handleQuestionNavigate);
+      const chat = renderChatAgent(roster, snapshot, briefing, handleAnalystQuestion, 'AI Analyst', SUGGESTED_QUESTIONS, systemPrompt);
       bodySlot.appendChild(chat);
       const analyst = renderAnalystPage(
-        state.selectedQuestion, systemPrompt, snapshot.snapshot_date,
-        handleQuestionNavigate,
+        state.selectedAnalystQuestion, systemPrompt, snapshot.snapshot_date,
+        handleAnalystQuestion,
+        'AI Analyst', SUGGESTED_QUESTIONS,
+      );
+      bodySlot.appendChild(analyst);
+    } else if (state.activeTab === 'finance') {
+      const chat = renderChatAgent(roster, snapshot, briefing, handleFinanceQuestion, 'Finance AI', SUGGESTED_FINANCE_QUESTIONS, financeSystemPrompt);
+      bodySlot.appendChild(chat);
+      const analyst = renderAnalystPage(
+        state.selectedFinanceQuestion, financeSystemPrompt, snapshot.snapshot_date,
+        handleFinanceQuestion,
+        'Finance AI', SUGGESTED_FINANCE_QUESTIONS,
       );
       bodySlot.appendChild(analyst);
     }

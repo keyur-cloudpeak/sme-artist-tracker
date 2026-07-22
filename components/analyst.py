@@ -74,12 +74,13 @@ function renderAnswerHtml(text) {
 
 // ── Chat agent panel ──────────────────────────────────────────────────
 
-function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
+function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate, title, questions, systemPrompt) {
   let open = true;
   let messages = [];
   let loading = false;
 
-  const systemPrompt = buildSystemPrompt(roster, snapshot, briefing);
+  const prompt = systemPrompt || buildSystemPrompt(roster, snapshot, briefing);
+  const questionSet = questions || SUGGESTED_QUESTIONS;
 
   const el = document.createElement('div');
   el.className = 'chat-panel anim-fade-in';
@@ -99,7 +100,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
     let accumulated = '';
     streamAnswer(
-      '', systemPrompt, messages.slice(0, -1),
+      '', prompt, messages.slice(0, -1),
       text => {
         accumulated += text;
         messages[messages.length - 1] = { role: 'assistant', content: accumulated };
@@ -141,7 +142,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
   function render() {
     const hasHistory = messages.length > 0;
-    const questionsHtml = SUGGESTED_QUESTIONS.map((q, i) => `
+    const questionsHtml = questionSet.map((q, i) => `
       <button class="chat-q-chip" data-q-index="${i}"
         style="border-color:${q.color}55;color:${q.color}cc"
         onmouseover="this.style.borderColor='${q.color}';this.style.color='${q.color}';this.style.background='${q.color}12'"
@@ -155,7 +156,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
       <div class="chat-header" id="chat-header-toggle">
         <div class="chat-header-left">
           <span class="chat-live-dot"><span class="chat-live-dot-ping"></span><span class="chat-live-dot-solid"></span></span>
-          <span class="chat-title">AI Analyst</span>
+          <span class="chat-title">${escapeHtml(title)}</span>
           <span class="chat-subtitle">· Click a question for a full-page answer · type below for quick chat</span>
         </div>
         <div class="chat-header-right">
@@ -186,7 +187,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
     el.querySelectorAll('.chat-q-chip').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = parseInt(btn.dataset.qIndex, 10);
-        onQuestionNavigate(SUGGESTED_QUESTIONS[idx].text);
+        onQuestionNavigate(questionSet[idx].text);
       });
     });
 
@@ -210,7 +211,7 @@ function renderChatAgent(roster, snapshot, briefing, onQuestionNavigate) {
 
 // ── Analyst full-page answer ─────────────────────────────────────────
 
-function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestion) {
+function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestion, title, questions) {
   const el = document.createElement('div');
   el.className = 'analyst-page';
 
@@ -271,8 +272,8 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestio
       return;
     }
 
-    const selectedIndex = SUGGESTED_QUESTIONS.findIndex(q => q.text === question);
-    const trayHtml = SUGGESTED_QUESTIONS.map((q, i) => {
+    const selectedIndex = questions.findIndex(q => q.text === question);
+    const trayHtml = questions.map((q, i) => {
       const isActive = q.text === question;
       return `
         <button class="analyst-tray-chip" data-tray-index="${i}" ${loading ? 'disabled' : ''}
@@ -290,9 +291,9 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestio
           <p class="analyst-date-value">${escapeHtml(snapshotDate)}</p>
         </div>
       </div>
-      <div class="analyst-question-block" style="border-color:${selectedIndex >= 0 ? SUGGESTED_QUESTIONS[selectedIndex].color + '66' : '#333'}">
-        <p class="analyst-q-eyebrow">AI Analyst · Question ${selectedIndex >= 0 ? String(selectedIndex + 1).padStart(2, '0') : '—'} of ${SUGGESTED_QUESTIONS.length}</p>
-        <h1 class="analyst-q-title" style="color:${selectedIndex >= 0 ? SUGGESTED_QUESTIONS[selectedIndex].color : '#ffffff'}">${escapeHtml(question)}</h1>
+      <div class="analyst-question-block" style="border-color:${selectedIndex >= 0 ? questions[selectedIndex].color + '66' : '#333'}">
+        <p class="analyst-q-eyebrow">${escapeHtml(title)} · Question ${selectedIndex >= 0 ? String(selectedIndex + 1).padStart(2, '0') : '—'} of ${questions.length}</p>
+        <h1 class="analyst-q-title" style="color:${selectedIndex >= 0 ? questions[selectedIndex].color : '#ffffff'}">${escapeHtml(question)}</h1>
       </div>
       <div class="analyst-answer-area">${answerAreaHtml()}</div>
       <div class="analyst-tray">
@@ -304,7 +305,7 @@ function renderAnalystPage(question, systemPrompt, snapshotDate, onSelectQuestio
     el.querySelectorAll('.analyst-tray-chip').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = parseInt(btn.dataset.trayIndex, 10);
-        onSelectQuestion(SUGGESTED_QUESTIONS[idx].text);
+        onSelectQuestion(questions[idx].text);
       });
     });
   }

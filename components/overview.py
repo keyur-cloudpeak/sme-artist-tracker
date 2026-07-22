@@ -85,6 +85,7 @@ const TABS = [
   { id: 'roster',       label: 'Artist Roster',    color: '#60a5fa', activeBg: 'rgba(96,165,250,0.18)',  hasCount: true },
   { id: 'leaderboards', label: 'KPI Leaderboards', color: '#fbbf24', activeBg: 'rgba(251,191,36,0.18)',  hasCount: true },
   { id: 'analyst',      label: 'AI Analyst',       color: '#4ade80', activeBg: 'rgba(74,222,128,0.18)',  hasCount: false },
+  { id: 'finance',      label: 'Finance AI',       color: '#fb923c', activeBg: 'rgba(251,146,60,0.18)', hasCount: false },
   { id: 'overview',     label: 'Overview',         color: '#a78bfa', activeBg: 'rgba(167,139,250,0.18)', hasCount: false },
 ];
 

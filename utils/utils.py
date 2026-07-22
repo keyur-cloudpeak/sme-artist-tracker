@@ -557,7 +557,14 @@ const SUGGESTED_QUESTIONS = [
   { text: 'If you had to flag 3 artists for an urgent A&R conversation, who and why?',          color: '#e879f9' },
   { text: 'Which artists have multiple active KPI alerts — give me the full picture.',           color: '#f87171' },
 ];
-
+const SUGGESTED_FINANCE_QUESTIONS = [
+  { text: 'Which artists show the strongest revenue momentum today — and which are underperforming by tier?', color: '#fb923c' },
+  { text: 'How does the current earnings mix look across streaming, touring, and merchandise?', color: '#f59e0b' },
+  { text: 'Which artists are likely to have the highest net worth growth potential over the next 12 months?', color: '#fbbf24' },
+  { text: 'Which artists have the most durable financial runway based on their KPI and alert profile?', color: '#f97316' },
+  { text: 'If you were advising a finance-focused investor, which 3 artists would you highlight and why?', color: '#fca5a5' },
+  { text: 'Are there artists with strong brand or sync value that could unlock new revenue streams?', color: '#fb7185' },
+];
 // ── System prompt builder ────────────────────────────────────────────────
 
 function buildSystemPrompt(roster, snapshot, briefing) {
@@ -623,6 +630,69 @@ INSTRUCTIONS:
 - If data is missing (—), acknowledge it rather than guessing.
 - You are speaking to Sony Music Latin A&R / marketing staff — use industry language.
 - For the dedicated answer page, write a comprehensive answer (300–500 words minimum).`;
+}
+
+function buildFinanceSystemPrompt(roster, snapshot, briefing) {
+  const artistLines = snapshot.artists.map(a => {
+    const kpiById = Object.fromEntries(a.kpis.map(k => [k.kpi_id, k]));
+    const summaryKpis = a.kpis
+      .filter(kpi => {
+        const meta = getKpiMeta(kpi.kpi_id);
+        return meta.is_summary || !!kpi.alert;
+      })
+      .map(kpi => `  ${formatKpiPromptValue(kpi)}`);
+    const alerts = a.kpis.filter(k => k.alert).map(k => k.alert).join(', ');
+
+    return [
+      `${a.artist_name} [${a.tier.toUpperCase()}]`,
+      ...summaryKpis,
+      alerts ? `  ALERTS: ${alerts}` : `  Alerts: none`,
+    ].join('\n');
+  });
+
+  const newsLines = briefing.items.map(item =>
+    `  #${item.priority} ${item.artist_name} [${item.signal_type}] — ${item.headline}\n  → ${item.summary}`,
+  );
+
+  const megaArtists   = snapshot.artists.filter(a => a.tier === 'mega').map(a => a.artist_name);
+  const majorArtists  = snapshot.artists.filter(a => a.tier === 'major').map(a => a.artist_name);
+  const risingArtists = snapshot.artists.filter(a => a.tier === 'rising').map(a => a.artist_name);
+  const domainSummary = DOMAIN_REGISTRY.map(d => `${d.label}: ${getDomainCounts()[d.id] ?? 0} KPIs`).join(' · ');
+  const kpiNames = KPI_REGISTRY.map(k => `${k.id.toString().padStart(2, '0')}. ${k.name} [${getDomainMeta(k.domain).label}]`).join(', ');
+
+  return `You are an embedded Finance AI inside the Sony Music Latin Artist Intelligence Dashboard.
+You have access to today's live KPI snapshot for all ${roster.artist_count} artists on the roster.
+
+Snapshot date: ${snapshot.snapshot_date}
+Previous snapshot: ${snapshot.previous_snapshot_date}
+Total artists: ${roster.artist_count}
+Total active alerts: ${snapshot.artists.reduce((n, a) => n + a.kpis.filter(k => k.alert).length, 0)}
+KPI registry: ${KPI_REGISTRY.length} metrics (${kpiNames})
+Domain registry: ${DOMAIN_REGISTRY.length} business areas (${domainSummary})
+
+ARTIST TIERS:
+  Mega (>50M total reach): ${megaArtists.join(', ')}
+  Major (10M–50M): ${majorArtists.join(', ')}
+  Rising (1M–10M): ${risingArtists.join(', ')}
+  Emerging (<1M): remaining artists
+
+═══════════════════════════════════════════
+FULL KPI DATA — ALL ARTISTS
+═══════════════════════════════════════════
+${artistLines.join('\n\n')}
+
+═══════════════════════════════════════════
+TODAY'S NEWS BRIEFING (${briefing.news_date})
+═══════════════════════════════════════════
+${newsLines.join('\n\n')}
+
+INSTRUCTIONS:
+- Answer finance questions using the real data above — always cite specific numbers.
+- Focus on revenue, earnings mix, net worth signals, and financial durability.
+- Highlight commercial momentum, revenue diversification, and risk exposures.
+- Use bold for key names and figures, but avoid long narrative paragraphs.
+- If data is missing, acknowledge it rather than guessing.
+- Write for finance and strategy stakeholders: precise, business-focused, and action-oriented.`;
 }
 
 // streamAnswer is defined in analyst.py — routes via Streamlit postMessage bridge.

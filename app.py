@@ -162,6 +162,11 @@ try:
     roster_json = fetch_roster_data()
     snapshot_json = fetch_snapshot_data()
     news_json = fetch_news_data()
+    try:
+        with open('data/kpi_12_20_sample.json', 'r', encoding='utf-8') as f:
+            kpi_sample_json = f.read()
+    except Exception:
+        kpi_sample_json = 'null'
 
     loader_placeholder.empty()
 
@@ -199,6 +204,7 @@ try:
       window.INJECTED_ROSTER = """ + roster_json + """;
       window.INJECTED_SNAPSHOT = """ + snapshot_json + """;
       window.INJECTED_NEWS = """ + news_json + """;
+      window.INJECTED_KPI_SAMPLE = """ + kpi_sample_json + """;
     </script>
 
     <script>

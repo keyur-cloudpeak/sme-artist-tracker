@@ -8,16 +8,34 @@ def get_frontend() -> str:
   const root = document.getElementById('root');
 
   // ── Load data (equivalent to src/data/loader.ts) ──────────────────
-  let roster, snapshot, briefing;
+  let roster, snapshot, briefing, kpiSample;
   try {
-    [roster, snapshot, briefing] = await Promise.all([
+    [roster, snapshot, briefing, kpiSample] = await Promise.all([
       window.INJECTED_ROSTER ? Promise.resolve(window.INJECTED_ROSTER) : fetch('data/roster.json').then(r => r.json()),
       window.INJECTED_SNAPSHOT ? Promise.resolve(window.INJECTED_SNAPSHOT) : fetch('data/snapshot.json').then(r => r.json()),
       window.INJECTED_NEWS ? Promise.resolve(window.INJECTED_NEWS) : fetch('data/news.json').then(r => r.json()),
+      window.INJECTED_KPI_SAMPLE ? Promise.resolve(window.INJECTED_KPI_SAMPLE) : fetch('data/kpi_12_20_sample.json').then(async r => {
+        if (!r.ok) return null;
+        const t = await r.text();
+        try { return JSON.parse(t); } catch (e) { return null; }
+      }),
     ]);
   } catch (err) {
     root.innerHTML = `<div style="padding:2rem;font-family:monospace;color:#f87171">Failed to load data files: ${escapeHtml(err.message)}</div>`;
     return;
+  }
+
+  // Merge optional external KPI sample into snapshot artists (add or replace KPIs by id)
+  if (kpiSample && Array.isArray(kpiSample.artists)) {
+    const sampleBySlug = Object.fromEntries(kpiSample.artists.map(a => [a.artist_slug, a]));
+    snapshot.artists = snapshot.artists.map(a => {
+      const s = sampleBySlug[a.artist_slug];
+      if (!s || !Array.isArray(s.kpis)) return a;
+      const existing = Object.fromEntries(a.kpis.map(k => [k.kpi_id, k]));
+      s.kpis.forEach(sk => { existing[sk.kpi_id] = sk; });
+      a.kpis = Object.values(existing).sort((x, y) => x.kpi_id - y.kpi_id);
+      return a;
+    });
   }
 
   const snapshotBySlug = Object.fromEntries(snapshot.artists.map(a => [a.artist_slug, a]));

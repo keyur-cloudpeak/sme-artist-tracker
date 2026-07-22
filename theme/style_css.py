@@ -215,7 +215,7 @@ img { max-width: 100%; display: block; }
 .story-card {
   position: relative; display: flex; gap: 1rem; align-items: flex-start; overflow: hidden;
   background: var(--color-bg-card); border: 1px solid var(--color-border); border-left: 2px solid transparent;
-  border-radius: 2px; padding: 1rem; transition: all .3s ease; cursor: default;
+  border-radius: 2px; padding: 1rem; transition: all .3s ease; cursor: pointer;
 }
 .story-card:hover { background: var(--color-bg-card-hover); border-color: var(--color-border-light); border-left-color: var(--color-text-muted); }
 .story-card.top3:hover { border-left-color: var(--color-text-primary); }
@@ -241,6 +241,36 @@ img { max-width: 100%; display: block; }
 .conf-dots { font-family: var(--font-mono); font-size: 13px; letter-spacing: .1em; }
 .conf-filled { color: var(--color-text-secondary); }
 .conf-empty { color: var(--color-border-light); opacity: .5; }
+
+.story-modal-overlay {
+  position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem; background: rgba(10, 10, 10, 0.85); overflow: auto;
+}
+.story-modal-panel {
+  position: relative; width: min(100%, 720px); background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: 8px; padding: 1.5rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.75);
+}
+.story-modal-close {
+  position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--color-border-light);
+  background: var(--color-bg-card); color: var(--color-text-primary); font-size: 18px; cursor: pointer;
+}
+.story-modal-header { display: flex; gap: 1rem; align-items: flex-start; }
+.story-modal-thumb { width: 120px; height: 120px; border-radius: 16px; object-fit: cover; border: 1px solid var(--color-border); }
+.story-modal-title-wrap { flex: 1; }
+.story-modal-badge { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; padding: 4px 8px; border-radius: 2px; margin-bottom: .75rem; }
+.story-modal-title { font-family: var(--font-headline); font-weight: 900; font-size: 1.35rem; color: var(--color-text-primary); margin: 0 0 .5rem; line-height: 1.1; }
+.story-modal-subtitle { font-family: var(--font-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--color-text-muted); }
+.story-modal-meta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); }
+.story-modal-body { margin-top: 1.5rem; color: var(--color-text-secondary); line-height: 1.8; }
+.story-modal-details { margin-top: 1rem; display: grid; gap: .75rem; }
+.story-modal-detail-row { display: flex; justify-content: space-between; gap: .75rem; font-size: 13px; }
+.story-modal-label { font-family: var(--font-mono); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: .12em; }
+.story-modal-impact { margin-top: 1.5rem; }
+.story-modal-impact h3 { margin: 0 0 .75rem; font-family: var(--font-headline); font-size: 1rem; color: var(--color-text-primary); }
+.story-modal-impact-item { display: flex; justify-content: space-between; gap: .75rem; padding: .75rem 1rem; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 4px; }
+.story-modal-impact-name { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-primary); }
+.story-modal-impact-delta { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-secondary); }
+.story-modal-empty { margin: 0; color: var(--color-text-muted); }
 
 /* ── Roster ─────────────────────────────────────────────── */
 .roster-toolbar { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }

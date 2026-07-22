@@ -61,12 +61,75 @@ function confidenceDotsHtml(dots) {
   return `<span class="conf-dots" title="Data confidence: ${filled}/${filled + unfilled}"><span class="conf-filled">${'●'.repeat(filled)}</span><span class="conf-empty">${'○'.repeat(unfilled)}</span></span>`;
 }
 
+function renderStoryDetailsModal(item, imageUrl) {
+  const signalLabel = SIGNAL_LABEL[item.signal_type] ?? item.signal_type.replace(/_/g, ' ').toUpperCase();
+  const style = SIGNAL_STYLE[item.signal_type] ?? { bg: '#ffffff18', text: '#ffffff', border: '#ffffff44' };
+  const fallbackSrc = `https://placehold.co/144x144/1A1A1A/444444?text=${encodeURIComponent(item.artist_slug)}`;
+  const thumbUrl = item.image_url || imageUrl || fallbackSrc;
+
+  const modal = document.createElement('div');
+  modal.className = 'story-modal-overlay';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.innerHTML = `
+    <div class="story-modal-panel">
+      <button class="story-modal-close" aria-label="Close story details">×</button>
+      <div class="story-modal-header">
+        <img class="story-modal-thumb" src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(item.artist_name)}" width="144" height="144" onerror="this.onerror=null;this.src='${fallbackSrc}'">
+        <div class="story-modal-title-wrap">
+          <div class="story-modal-badge" style="background:${style.bg};color:${style.text};border:1px solid ${style.border}">${escapeHtml(signalLabel)}</div>
+          <h2 class="story-modal-title">${escapeHtml(item.headline)}</h2>
+          <div class="story-modal-subtitle">${escapeHtml(item.artist_name)} · ${escapeHtml(item.artist_tier.toUpperCase())}</div>
+        </div>
+      </div>
+      <div class="story-modal-meta">
+        <span>${escapeHtml(item.priority ? `Priority ${item.priority}` : 'Priority N/A')}</span>
+        <span>${escapeHtml(item.score ? `Score ${item.score}` : 'Score N/A')}</span>
+        <span>${escapeHtml(fmtTimestamp(item.timestamp))}</span>
+      </div>
+      <div class="story-modal-body">
+        <p>${escapeHtml(item.summary)}</p>
+        <div class="story-modal-details">
+          <div class="story-modal-detail-row"><span class="story-modal-label">Source</span><span>${escapeHtml(item.source)}</span></div>
+          <div class="story-modal-detail-row"><span class="story-modal-label">Confidence</span><span>${escapeHtml(item.data_confidence)}</span></div>
+        </div>
+        <div class="story-modal-impact">
+          <h3>Impact</h3>
+          ${item.kpi_impact.length ? item.kpi_impact.map(impact => `
+            <div class="story-modal-impact-item">
+              <span class="story-modal-impact-name">${escapeHtml(impact.kpi_name)}</span>
+              <span class="story-modal-impact-delta">${escapeHtml(impact.direction === 'up' ? '▲' : impact.direction === 'down' ? '▼' : '—')} ${impact.delta_absolute != null ? `${impact.delta_absolute > 0 ? '+' : ''}${fmtNumber(impact.delta_absolute)}` : ''}${impact.delta_percent != null ? ` (${impact.delta_percent.toFixed(1)}%)` : ''}</span>
+            </div>`).join('') : '<p class="story-modal-empty">No KPI impact data available.</p>'}
+        </div>
+      </div>
+    </div>
+  `;
+
+  const closeModal = () => {
+    document.body.removeChild(modal);
+    document.removeEventListener('keydown', onKeyDown);
+  };
+
+  const onKeyDown = (event) => {
+    if (event.key === 'Escape') closeModal();
+  };
+
+  modal.querySelector('.story-modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', onKeyDown);
+  document.body.appendChild(modal);
+  modal.querySelector('.story-modal-close').focus();
+}
+
 function renderNewsItem(item, imageUrl) {
   const signalLabel = SIGNAL_LABEL[item.signal_type] ?? item.signal_type.replace(/_/g, ' ').toUpperCase();
   const isTop3 = item.priority <= 3;
   const primaryImpact = item.kpi_impact[0] ?? null;
   const fallbackSrc = `https://placehold.co/144x144/1A1A1A/444444?text=${encodeURIComponent(item.artist_slug)}`;
   const style = SIGNAL_STYLE[item.signal_type] ?? { bg: '#ffffff18', text: '#ffffff', border: '#ffffff44' };
+  const thumbUrl = item.image_url || imageUrl || fallbackSrc;
 
   const kpiRow = primaryImpact
     ? `<div class="kpi-impact-row">${item.kpi_impact.slice(0, 3).map(kpiImpactBadgeHtml).join('')}</div>`
@@ -74,9 +137,19 @@ function renderNewsItem(item, imageUrl) {
 
   const el = document.createElement('article');
   el.className = 'story-card' + (isTop3 ? ' top3' : '');
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  el.setAttribute('aria-label', `${escapeHtml(item.headline)} story details`);
+  el.addEventListener('click', () => renderStoryDetailsModal(item, thumbUrl));
+  el.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      renderStoryDetailsModal(item, thumbUrl);
+    }
+  });
   el.innerHTML = `
     <div class="story-priority${isTop3 ? ' top3' : ''}"><span>${item.priority}</span></div>
-    <img class="story-thumb" src="${escapeHtml(imageUrl ?? fallbackSrc)}" alt="${escapeHtml(item.artist_name)}" width="144" height="144" onerror="this.onerror=null;this.src='${fallbackSrc}'">
+    <img class="story-thumb" src="${escapeHtml(thumbUrl)}" alt="${escapeHtml(item.artist_name)}" width="144" height="144" onerror="this.onerror=null;this.src='${fallbackSrc}'">
     <div class="story-body">
       <div class="story-top-row">
         <span class="signal-badge" style="background:${style.bg};color:${style.text};border:1px solid ${style.border}">${escapeHtml(signalLabel)}</span>
@@ -111,7 +184,7 @@ function renderNewsFeed(briefing, imageBySlug) {
     const wrap = document.createElement('div');
     wrap.className = 'anim-fade-up';
     wrap.style.animationDelay = `${100 + Math.min(i * 35, 900)}ms`;
-    wrap.appendChild(renderNewsItem(item, imageBySlug[item.artist_slug]));
+    wrap.appendChild(renderNewsItem(item, item.image_url || imageBySlug[item.artist_slug]));
     list.appendChild(wrap);
   });
   el.appendChild(list);
